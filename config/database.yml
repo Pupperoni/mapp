@@ -11,7 +11,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: sample_sqlite3_development
+  database: mapp_development
   pool: 5
   username: root
   password:
@@ -24,7 +24,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: sample_sqlite3_test
+  database: mapp_test
   pool: 5
   username: root
   password:
@@ -34,7 +34,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: sample_sqlite3_production
+  database: mapp_production
   pool: 5
   username: root
   password:
