@@ -1,0 +1,2 @@
+class ImplementingOffice < ApplicationRecord
+end

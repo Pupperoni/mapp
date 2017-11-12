@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accident_type: MyString
+  report_type: MyString
+  status: MyString
+  airport: one
+
+two:
+  accident_type: MyString
+  report_type: MyString
+  status: MyString
+  airport: two
