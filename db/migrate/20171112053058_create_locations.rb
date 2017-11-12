@@ -7,5 +7,6 @@ class CreateLocations < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    execute "ALTER TABLE words ADD PRIMARY KEY (region,province,city);"
   end
 end
