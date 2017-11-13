@@ -144,7 +144,6 @@ Dir.foreach('./lib/seeds/infrastructure') do |item|
       t.save
       loc = t.id
       t = Project.new
-      t.location_id = loc
       t.pcost = row['project_cost']
       t.pdesc = row['project_description']
       t.save
