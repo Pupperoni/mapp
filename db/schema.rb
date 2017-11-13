@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112154247) do
+ActiveRecord::Schema.define(version: 20171113083148) do
 
   create_table "aircrafts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "aircraft_registration"
     t.string "craft_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "airline_operators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "operator_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,10 +41,45 @@ ActiveRecord::Schema.define(version: 20171112154247) do
     t.index ["locations_id"], name: "index_atms_on_locations_id"
   end
 
+  create_table "built_ins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "projects_id"
+    t.bigint "locations_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locations_id"], name: "index_built_ins_on_locations_id"
+    t.index ["projects_id"], name: "index_built_ins_on_projects_id"
+  end
+
+  create_table "completed_bies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "project_end_date"
+    t.bigint "projects_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projects_id"], name: "index_completed_bies_on_projects_id"
+  end
+
+  create_table "consists_ofs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "airports_id"
+    t.bigint "airline_operators_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_operators_id"], name: "index_consists_ofs_on_airline_operators_id"
+    t.index ["airports_id"], name: "index_consists_ofs_on_airports_id"
+  end
+
   create_table "contractors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "cname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "handled_bies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "projects_id"
+    t.bigint "contractors_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contractors_id"], name: "index_handled_bies_on_contractors_id"
+    t.index ["projects_id"], name: "index_handled_bies_on_projects_id"
   end
 
   create_table "happened_ats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -75,10 +116,28 @@ ActiveRecord::Schema.define(version: 20171112154247) do
     t.index ["situation_id"], name: "index_has_casualties_on_situation_id"
   end
 
+  create_table "implemented_bies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "projects_id"
+    t.bigint "implementing_offices_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["implementing_offices_id"], name: "index_implemented_bies_on_implementing_offices_id"
+    t.index ["projects_id"], name: "index_implemented_bies_on_projects_id"
+  end
+
   create_table "implementing_offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "office_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "located_ins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "airports_id"
+    t.bigint "locations_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airports_id"], name: "index_located_ins_on_airports_id"
+    t.index ["locations_id"], name: "index_located_ins_on_locations_id"
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -87,6 +146,25 @@ ActiveRecord::Schema.define(version: 20171112154247) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "operates_ins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "airline_operators_id"
+    t.bigint "locations_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_operators_id"], name: "index_operates_ins_on_airline_operators_id"
+    t.index ["locations_id"], name: "index_operates_ins_on_locations_id"
+  end
+
+  create_table "progress_reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "report_date"
+    t.string "report_type"
+    t.integer "report_count"
+    t.bigint "airline_operators_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_operators_id"], name: "index_progress_reports_on_airline_operators_id"
   end
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -107,13 +185,36 @@ ActiveRecord::Schema.define(version: 20171112154247) do
     t.index ["airport_id"], name: "index_situations_on_airport_id"
   end
 
+  create_table "started_ons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "project_start_date"
+    t.bigint "projects_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projects_id"], name: "index_started_ons_on_projects_id"
+  end
+
   add_foreign_key "airports", "locations"
   add_foreign_key "atms", "locations", column: "locations_id"
+  add_foreign_key "built_ins", "locations", column: "locations_id"
+  add_foreign_key "built_ins", "projects", column: "projects_id"
+  add_foreign_key "completed_bies", "projects", column: "projects_id"
+  add_foreign_key "consists_ofs", "airline_operators", column: "airline_operators_id"
+  add_foreign_key "consists_ofs", "airports", column: "airports_id"
+  add_foreign_key "handled_bies", "contractors", column: "contractors_id"
+  add_foreign_key "handled_bies", "projects", column: "projects_id"
   add_foreign_key "happened_ats", "locations"
   add_foreign_key "happened_ats", "situations"
   add_foreign_key "happened_ons", "situations"
   add_foreign_key "has_accidents", "aircrafts"
   add_foreign_key "has_accidents", "situations"
   add_foreign_key "has_casualties", "situations"
+  add_foreign_key "implemented_bies", "implementing_offices", column: "implementing_offices_id"
+  add_foreign_key "implemented_bies", "projects", column: "projects_id"
+  add_foreign_key "located_ins", "airports", column: "airports_id"
+  add_foreign_key "located_ins", "locations", column: "locations_id"
+  add_foreign_key "operates_ins", "airline_operators", column: "airline_operators_id"
+  add_foreign_key "operates_ins", "locations", column: "locations_id"
+  add_foreign_key "progress_reports", "airline_operators", column: "airline_operators_id"
   add_foreign_key "situations", "airports"
+  add_foreign_key "started_ons", "projects", column: "projects_id"
 end

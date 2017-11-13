@@ -9162,3 +9162,232 @@ FOREIGN KEY (`airport_id`)
   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
   [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (287.5ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (444.0ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK(5040736756503779730, 0)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateLocations (20171112053058)
+  [1m[35m (351.7ms)[0m  [1m[35mCREATE TABLE `locations` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `region` int, `province` varchar(255), `city` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112053058')[0m
+  [1m[35m (40.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAtms (20171112153253)
+  [1m[35m (305.1ms)[0m  [1m[35mCREATE TABLE `atms` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `atm_type` varchar(255), `locations_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_atms_on_locations_id`  (`locations_id`), CONSTRAINT `fk_rails_b810589ce3`
+FOREIGN KEY (`locations_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112153253')[0m
+  [1m[35m (73.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAircrafts (20171112153532)
+  [1m[35m (274.2ms)[0m  [1m[35mCREATE TABLE `aircrafts` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `aircraft_registration` varchar(255), `craft_type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112153532')[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAirports (20171112153823)
+  [1m[35m (348.2ms)[0m  [1m[35mCREATE TABLE `airports` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `airport_type` varchar(255), `location_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_airports_on_location_id`  (`location_id`), CONSTRAINT `fk_rails_878c6d4e63`
+FOREIGN KEY (`location_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112153823')[0m
+  [1m[35m (44.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSituations (20171112153934)
+  [1m[35m (281.6ms)[0m  [1m[35mCREATE TABLE `situations` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `accident_type` varchar(255), `report_type` varchar(255), `status` varchar(255), `airport_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_situations_on_airport_id`  (`airport_id`), CONSTRAINT `fk_rails_ab6c06ef73`
+FOREIGN KEY (`airport_id`)
+  REFERENCES `airports` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112153934')[0m
+  [1m[35m (43.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHasAccidents (20171112154040)
+  [1m[35m (402.2ms)[0m  [1m[35mCREATE TABLE `has_accidents` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `aircraft_id` bigint, `situation_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_has_accidents_on_aircraft_id`  (`aircraft_id`),  INDEX `index_has_accidents_on_situation_id`  (`situation_id`), CONSTRAINT `fk_rails_2fc52dfbe6`
+FOREIGN KEY (`aircraft_id`)
+  REFERENCES `aircrafts` (`id`)
+, CONSTRAINT `fk_rails_0bc0ece5c6`
+FOREIGN KEY (`situation_id`)
+  REFERENCES `situations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154040')[0m
+  [1m[35m (42.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHappenedAts (20171112154100)
+  [1m[35m (439.6ms)[0m  [1m[35mCREATE TABLE `happened_ats` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `situation_id` bigint, `location_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_happened_ats_on_situation_id`  (`situation_id`),  INDEX `index_happened_ats_on_location_id`  (`location_id`), CONSTRAINT `fk_rails_a023df154a`
+FOREIGN KEY (`situation_id`)
+  REFERENCES `situations` (`id`)
+, CONSTRAINT `fk_rails_28a58e91ff`
+FOREIGN KEY (`location_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154100')[0m
+  [1m[35m (38.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHappenedOns (20171112154128)
+  [1m[35m (296.2ms)[0m  [1m[35mCREATE TABLE `happened_ons` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `accident_date` date, `situation_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_happened_ons_on_situation_id`  (`situation_id`), CONSTRAINT `fk_rails_e011895c05`
+FOREIGN KEY (`situation_id`)
+  REFERENCES `situations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154128')[0m
+  [1m[35m (42.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHasCasualties (20171112154155)
+  [1m[35m (294.5ms)[0m  [1m[35mCREATE TABLE `has_casualties` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `no_of_casualties` int, `situation_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_has_casualties_on_situation_id`  (`situation_id`), CONSTRAINT `fk_rails_7e1980419c`
+FOREIGN KEY (`situation_id`)
+  REFERENCES `situations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154155')[0m
+  [1m[35m (41.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProjects (20171112154223)
+  [1m[35m (284.0ms)[0m  [1m[35mCREATE TABLE `projects` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `pcost` float, `pstatus` varchar(255), `pdesc` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154223')[0m
+  [1m[35m (40.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateImplementingOffices (20171112154236)
+  [1m[35m (319.0ms)[0m  [1m[35mCREATE TABLE `implementing_offices` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `office_name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154236')[0m
+  [1m[35m (38.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateContractors (20171112154247)
+  [1m[35m (318.9ms)[0m  [1m[35mCREATE TABLE `contractors` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `cname` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171112154247')[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-11-13 06:50:27', '2017-11-13 06:50:27')[0m
+  [1m[35m (38.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(5040736756503779730)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK(5040736756503779730, 0)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateBuiltIns (20171113075054)
+  [1m[35m (455.4ms)[0m  [1m[35mCREATE TABLE `built_ins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `region` int, `province` varchar(255), `city` varchar(255), `airport_type` varchar(255), `airports_id` bigint, `locations_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_built_ins_on_airports_id`  (`airports_id`),  INDEX `index_built_ins_on_locations_id`  (`locations_id`), CONSTRAINT `fk_rails_24272ddd59`
+FOREIGN KEY (`airports_id`)
+  REFERENCES `airports` (`id`)
+, CONSTRAINT `fk_rails_c9cc843e86`
+FOREIGN KEY (`locations_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113075054')[0m
+  [1m[35m (35.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(5040736756503779730)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK(5040736756503779730, 0)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateBuiltIns (20171113075054)
+  [1m[35m (168.7ms)[0m  [1m[35mDROP TABLE `built_ins`[0m
+  [1m[35mSQL (43.5ms)[0m  [1m[31mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20171113075054'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(5040736756503779730)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK(5040736756503779730, 0)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateBuiltIns (20171113081817)
+  [1m[35m (294.4ms)[0m  [1m[35mCREATE TABLE `built_ins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `projects_id` bigint, `locations_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_built_ins_on_projects_id`  (`projects_id`),  INDEX `index_built_ins_on_locations_id`  (`locations_id`), CONSTRAINT `fk_rails_7c4defff02`
+FOREIGN KEY (`projects_id`)
+  REFERENCES `projects` (`id`)
+, CONSTRAINT `fk_rails_c9cc843e86`
+FOREIGN KEY (`locations_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113081817')[0m
+  [1m[35m (71.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStartedOns (20171113081841)
+  [1m[35m (426.5ms)[0m  [1m[35mCREATE TABLE `started_ons` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `project_start_date` date, `projects_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_started_ons_on_projects_id`  (`projects_id`), CONSTRAINT `fk_rails_8b0dad00b0`
+FOREIGN KEY (`projects_id`)
+  REFERENCES `projects` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113081841')[0m
+  [1m[35m (162.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompletedBies (20171113081905)
+  [1m[35m (367.2ms)[0m  [1m[35mCREATE TABLE `completed_bies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `project_end_date` date, `projects_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_completed_bies_on_projects_id`  (`projects_id`), CONSTRAINT `fk_rails_8ec270095c`
+FOREIGN KEY (`projects_id`)
+  REFERENCES `projects` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113081905')[0m
+  [1m[35m (39.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHandledBies (20171113082054)
+  [1m[35m (339.6ms)[0m  [1m[35mCREATE TABLE `handled_bies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `projects_id` bigint, `contractors_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_handled_bies_on_projects_id`  (`projects_id`),  INDEX `index_handled_bies_on_contractors_id`  (`contractors_id`), CONSTRAINT `fk_rails_839a439220`
+FOREIGN KEY (`projects_id`)
+  REFERENCES `projects` (`id`)
+, CONSTRAINT `fk_rails_d18dcb4306`
+FOREIGN KEY (`contractors_id`)
+  REFERENCES `contractors` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113082054')[0m
+  [1m[35m (39.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateImplementedBies (20171113082249)
+  [1m[35m (384.4ms)[0m  [1m[35mCREATE TABLE `implemented_bies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `projects_id` bigint, `implementing_offices_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_implemented_bies_on_projects_id`  (`projects_id`),  INDEX `index_implemented_bies_on_implementing_offices_id`  (`implementing_offices_id`), CONSTRAINT `fk_rails_822270eb12`
+FOREIGN KEY (`projects_id`)
+  REFERENCES `projects` (`id`)
+, CONSTRAINT `fk_rails_6a1e247367`
+FOREIGN KEY (`implementing_offices_id`)
+  REFERENCES `implementing_offices` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113082249')[0m
+  [1m[35m (39.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAirlineOperators (20171113082455)
+  [1m[35m (353.2ms)[0m  [1m[35mCREATE TABLE `airline_operators` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `operator_name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113082455')[0m
+  [1m[35m (40.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProgressReports (20171113082735)
+  [1m[35m (1151.1ms)[0m  [1m[35mCREATE TABLE `progress_reports` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `report_date` date, `report_type` varchar(255), `report_count` int, `airline_operators_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_progress_reports_on_airline_operators_id`  (`airline_operators_id`), CONSTRAINT `fk_rails_3bd320a954`
+FOREIGN KEY (`airline_operators_id`)
+  REFERENCES `airline_operators` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113082735')[0m
+  [1m[35m (125.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLocatedIns (20171113082819)
+  [1m[35m (526.6ms)[0m  [1m[35mCREATE TABLE `located_ins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `airports_id` bigint, `locations_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_located_ins_on_airports_id`  (`airports_id`),  INDEX `index_located_ins_on_locations_id`  (`locations_id`), CONSTRAINT `fk_rails_a0b52abc2d`
+FOREIGN KEY (`airports_id`)
+  REFERENCES `airports` (`id`)
+, CONSTRAINT `fk_rails_028b790eb6`
+FOREIGN KEY (`locations_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113082819')[0m
+  [1m[35m (39.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateConsistsOfs (20171113083030)
+  [1m[35m (551.7ms)[0m  [1m[35mCREATE TABLE `consists_ofs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `airports_id` bigint, `airline_operators_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_consists_ofs_on_airports_id`  (`airports_id`),  INDEX `index_consists_ofs_on_airline_operators_id`  (`airline_operators_id`), CONSTRAINT `fk_rails_bd7beab2dd`
+FOREIGN KEY (`airports_id`)
+  REFERENCES `airports` (`id`)
+, CONSTRAINT `fk_rails_1d1633fed2`
+FOREIGN KEY (`airline_operators_id`)
+  REFERENCES `airline_operators` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113083030')[0m
+  [1m[35m (41.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOperatesIns (20171113083148)
+  [1m[35m (383.5ms)[0m  [1m[35mCREATE TABLE `operates_ins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `airline_operators_id` bigint, `locations_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_operates_ins_on_airline_operators_id`  (`airline_operators_id`),  INDEX `index_operates_ins_on_locations_id`  (`locations_id`), CONSTRAINT `fk_rails_87e179f309`
+FOREIGN KEY (`airline_operators_id`)
+  REFERENCES `airline_operators` (`id`)
+, CONSTRAINT `fk_rails_4a167d66bb`
+FOREIGN KEY (`locations_id`)
+  REFERENCES `locations` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113083148')[0m
+  [1m[35m (40.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(5040736756503779730)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
