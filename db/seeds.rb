@@ -18,48 +18,48 @@ Dir.foreach('./lib/seeds/accidents') do |item|
   csv_text = File.read(Rails.root.join('lib', 'seeds', 'accidents', item))
   csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-  csv.each do |row|
-    if Location.exists?(city: row['place_of_occurance'])
-      loc = Location.where(city: row['place_of_occurance']).first.id
-    else
-      t = Location.new
-      t.city = row['place_of_occurance']
-      t.save
-      loc = t.id
-    end
-
-    if Aircraft.exists?(aircraft_registration: row['aircraft_registration_or_model'])
-      reg = Aircraft.where(aircraft_registration: row['aircraft_registration_or_model']).first.id
-    else
-      t = Aircraft.new
-      t.aircraft_registration = row['aircraft_registration_or_model']
-      t.craft_type = row['aircraft_type']
-      t.save
-      reg = t.id
-    end
-
-    ### Situation Table ###
-
-    t = HasAccident.new
-    t.aircraft_id = reg
-    # t.situation_id = acc
-    t.save
-
-    t = HappenedAt.new
-    # t.situation_id = acc
-    t.location_id = loc
-    t.save
-
-    t = HappenedOn.new
-    t.accident_date = row['date']
-    #t.situation_id = acc
-    t.save
-
-    t = HasCasualty.new
-    #t.situation_id = acc
-    t.save
-
-  end
+  # csv.each do |row|
+  #   if Location.exists?(city: row['place_of_occurance'])
+  #     loc = Location.where(city: row['place_of_occurance']).first.id
+  #   else
+  #     t = Location.new
+  #     t.city = row['place_of_occurance']
+  #     t.save
+  #     loc = t.id
+  #   end
+  #
+  #   if Aircraft.exists?(aircraft_registration: row['aircraft_registration_or_model'])
+  #     reg = Aircraft.where(aircraft_registration: row['aircraft_registration_or_model']).first.id
+  #   else
+  #     t = Aircraft.new
+  #     t.aircraft_registration = row['aircraft_registration_or_model']
+  #     t.craft_type = row['aircraft_type']
+  #     t.save
+  #     reg = t.id
+  #   end
+  #
+  #   ### Situation Table ###
+  #
+  #   t = HasAccident.new
+  #   t.aircraft_id = reg
+  #   # t.situation_id = acc
+  #   t.save
+  #
+  #   t = HappenedAt.new
+  #   # t.situation_id = acc
+  #   t.location_id = loc
+  #   t.save
+  #
+  #   t = HappenedOn.new
+  #   t.accident_date = row['date']
+  #   #t.situation_id = acc
+  #   t.save
+  #
+  #   t = HasCasualty.new
+  #   #t.situation_id = acc
+  #   t.save
+  #
+  # end
 
 end
 
@@ -74,13 +74,46 @@ Dir.foreach('./lib/seeds/cargo-freight') do |item|
   csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
   csv.each do |row|
+    if Location.exists?(city: row['airport'])
+      loc = Location.where(city: row['airport']).first.id
+    else
+      t = Location.new
+      t.city = row['airport']
+      t.save
+      loc = t.id
+      t = Airport.new
+      t.location_id = loc
+      t.save
+      airp = t.id
+    end
 
+    # if AirlineOperator.exists?(operator_name: row['airline_operator'])
+    #   op = AirlineOperator.where(operator_name: row['airline_operator']).first.id
+    # else
+    #   t = AirlineOperator.new
+    #   t.operator_name = row['airline_operator']
+    #   t.save
+    #   op = t.id
+    # end
+    #
+    # t = ProgressReport.new
+    # t.operator_id = op
+    #
+    # t = LocatedIn.new
+    # t.airport_id = airp
+    # t.save
+    #
+    # t = OperateIn.new
+    # t.operator_id = op
+    # t.location_id = loc
+    # t.save
+    #
+    # t = ConsistOf.new
+    # t.operator_id = op
+    # t.airport_id = airp
+    # t.save
     
-
-
   end
-
-
 
 end
 
