@@ -132,8 +132,69 @@ end
 Dir.foreach('./lib/seeds/infrastructure') do |item|
   next if item == '.' or item == '..'
 
-  # csv_text = File.read(Rails.root.join('lib', 'seeds', 'infrastructure', item))
-  # csv = CSV.parse(csv_text.scrub, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'infrastructure', item))
+  csv = CSV.parse(csv_text.scrub, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+  csv.each do |row|
+    if Location.exists?(city: row['project_location'])
+      loc = Location.where(city: row['project_location']).first.id
+    else
+      t = Location.new
+      t.city = row['project_location']
+      t.save
+      loc = t.id
+      t = Project.new
+      t.location_id = loc
+      t.pcost = row['project_cost']
+      t.pdesc = row['project_description']
+      t.save
+      proj = t
+    end
+
+    if ImplementingOffice.exists?(office_name: row['implementing_office'])
+      imof = ImplementingOffice.where(office_name: row['airline_operator']).first.id
+    else
+      t = ImplementingOffice.new
+      t.office_name = row['implementing_office']
+      t.save
+      imof = t.id
+    end
+
+    if Contractor.exists?(cname: row['project_contractor'])
+      imof = Contractor.where(cname: row['project_contractor']).first.id
+    else
+      t = Contractor.new
+      t.cname = row['project_contractor']
+      t.save
+      contr = t.id
+    end
+
+    t = StartedOn.new
+    t.project_start_date = row['contract_start_date']
+    t.projects_id = proj
+    t.save
+
+    t = ImplementedBy.new
+    t.projects_id = proj
+    t.implementing_offices_id = imof
+    t.save
+
+    t = HandledBy.new
+    t.projects_id = proj
+    t.contractors_id = contr
+    t.save
+
+    t = BuiltIn.new
+    t.projects_id = proj
+    t.locations_id = loc
+    t.save
+
+    t = CompletedBy.new
+    t.projects_id = proj
+    t.project_end_date = row['actual_completion_year']+'/'+row['actual_completion_month']+'/01 00.00.00'
+    t.save!
+
+  end
 
 end
 
