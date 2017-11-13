@@ -18,27 +18,33 @@ Dir.foreach('./lib/seeds/accidents') do |item|
   csv_text = File.read(Rails.root.join('lib', 'seeds', 'accidents', item))
   csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-  # csv.each do |row|
-  #   if Location.exists?(city: row['place_of_occurance'])
-  #     loc = Location.where(city: row['place_of_occurance']).first.id
-  #   else
-  #     t = Location.new
-  #     t.city = row['place_of_occurance']
-  #     t.save
-  #     loc = t.id
-  #   end
-  #
-  #   if Aircraft.exists?(aircraft_registration: row['aircraft_registration_or_model'])
-  #     reg = Aircraft.where(aircraft_registration: row['aircraft_registration_or_model']).first.id
-  #   else
-  #     t = Aircraft.new
-  #     t.aircraft_registration = row['aircraft_registration_or_model']
-  #     t.craft_type = row['aircraft_type']
-  #     t.save
-  #     reg = t.id
-  #   end
-  #
-  #   ### Situation Table ###
+  csv.each do |row|
+    # if Location.exists?(city: row['place_of_occurance'])
+    #   loc = Location.where(city: row['place_of_occurance']).first.id
+    # else
+    #   t = Location.new
+    #   t.city = row['place_of_occurance']
+    #   t.save
+    #   loc = t.id
+    # end
+    #
+    # if Aircraft.exists?(aircraft_registration: row['aircraft_registration_or_model'])
+    #   reg = Aircraft.where(aircraft_registration: row['aircraft_registration_or_model']).first.id
+    # else
+    #   t = Aircraft.new
+    #   t.aircraft_registration = row['aircraft_registration_or_model']
+    #   t.craft_type = row['aircraft_type']
+    #   t.save
+    #   reg = t.id
+    # end
+    #
+    # t = Situation.new
+    # t.accident_type = row['type_of_occurance']
+    # t.report_type = row['report']
+    # t.status = row['status']
+    # t.save
+    # acc = t.id
+    # puts acc
   #
   #   t = HasAccident.new
   #   t.aircraft_id = reg
@@ -59,7 +65,7 @@ Dir.foreach('./lib/seeds/accidents') do |item|
   #   #t.situation_id = acc
   #   t.save
   #
-  # end
+  end
 
 end
 
@@ -84,35 +90,37 @@ Dir.foreach('./lib/seeds/cargo-freight') do |item|
       t = Airport.new
       t.location_id = loc
       t.save
-      airp = t.id
+      airp = t
     end
 
-    # if AirlineOperator.exists?(operator_name: row['airline_operator'])
-    #   op = AirlineOperator.where(operator_name: row['airline_operator']).first.id
-    # else
-    #   t = AirlineOperator.new
-    #   t.operator_name = row['airline_operator']
-    #   t.save
-    #   op = t.id
-    # end
-    #
-    # t = ProgressReport.new
-    # t.operator_id = op
-    #
-    # t = LocatedIn.new
-    # t.airport_id = airp
-    # t.save
-    #
-    # t = OperateIn.new
-    # t.operator_id = op
-    # t.location_id = loc
-    # t.save
-    #
-    # t = ConsistOf.new
-    # t.operator_id = op
-    # t.airport_id = airp
-    # t.save
-    
+    if AirlineOperator.exists?(operator_name: row['airline_operator'])
+      op = AirlineOperator.where(operator_name: row['airline_operator']).first.id
+    else
+      t = AirlineOperator.new
+      t.operator_name = row['airline_operator']
+      t.save
+      op = t.id
+    end
+
+    t = ProgressReport.new
+    t.airline_operators_id = op
+    t.save
+
+    t = LocatedIn.new
+    t.locations_id = loc
+    t.airports_id = airp
+    t.save
+
+    t = OperatesIn.new
+    t.airline_operators_id = op
+    t.locations_id = loc
+    t.save
+
+    t = ConsistsOf.new
+    t.airline_operators_id = op
+    t.airports_id = airp
+    t.save!
+
   end
 
 end

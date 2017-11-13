@@ -1,4 +1,4 @@
 class LocatedIn < ApplicationRecord
-  belongs_to :airports
-  belongs_to :locations
+  belongs_to :airport, optional: true
+  belongs_to :location, optional: true
 end

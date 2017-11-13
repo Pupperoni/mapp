@@ -1,4 +1,4 @@
 class ConsistsOf < ApplicationRecord
-  belongs_to :airports
-  belongs_to :airline_operators
+  belongs_to :airport, optional: true
+  belongs_to :airline_operator, optional: true
 end

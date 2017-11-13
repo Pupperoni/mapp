@@ -1,2 +1,3 @@
 class AirlineOperator < ApplicationRecord
+
 end

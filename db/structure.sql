@@ -19,7 +19,18 @@ CREATE TABLE `aircrafts` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `airline_operators`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `airline_operators` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `operator_name` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `airports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -33,7 +44,7 @@ CREATE TABLE `airports` (
   PRIMARY KEY (`id`),
   KEY `index_airports_on_location_id` (`location_id`),
   CONSTRAINT `fk_rails_878c6d4e63` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -60,6 +71,52 @@ CREATE TABLE `atms` (
   CONSTRAINT `fk_rails_b810589ce3` FOREIGN KEY (`locations_id`) REFERENCES `locations` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `built_ins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `built_ins` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `projects_id` bigint(20) DEFAULT NULL,
+  `locations_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_built_ins_on_projects_id` (`projects_id`),
+  KEY `index_built_ins_on_locations_id` (`locations_id`),
+  CONSTRAINT `fk_rails_7c4defff02` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`),
+  CONSTRAINT `fk_rails_c9cc843e86` FOREIGN KEY (`locations_id`) REFERENCES `locations` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `completed_bies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `completed_bies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_end_date` date DEFAULT NULL,
+  `projects_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_completed_bies_on_projects_id` (`projects_id`),
+  CONSTRAINT `fk_rails_8ec270095c` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `consists_ofs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `consists_ofs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `airports_id` bigint(20) DEFAULT NULL,
+  `airline_operators_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_consists_ofs_on_airports_id` (`airports_id`),
+  KEY `index_consists_ofs_on_airline_operators_id` (`airline_operators_id`),
+  CONSTRAINT `fk_rails_1d1633fed2` FOREIGN KEY (`airline_operators_id`) REFERENCES `airline_operators` (`id`),
+  CONSTRAINT `fk_rails_bd7beab2dd` FOREIGN KEY (`airports_id`) REFERENCES `airports` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `contractors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -69,6 +126,22 @@ CREATE TABLE `contractors` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `handled_bies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `handled_bies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `projects_id` bigint(20) DEFAULT NULL,
+  `contractors_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_handled_bies_on_projects_id` (`projects_id`),
+  KEY `index_handled_bies_on_contractors_id` (`contractors_id`),
+  CONSTRAINT `fk_rails_839a439220` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`),
+  CONSTRAINT `fk_rails_d18dcb4306` FOREIGN KEY (`contractors_id`) REFERENCES `contractors` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `happened_ats`;
@@ -131,6 +204,22 @@ CREATE TABLE `has_casualties` (
   CONSTRAINT `fk_rails_7e1980419c` FOREIGN KEY (`situation_id`) REFERENCES `situations` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `implemented_bies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `implemented_bies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `projects_id` bigint(20) DEFAULT NULL,
+  `implementing_offices_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_implemented_bies_on_projects_id` (`projects_id`),
+  KEY `index_implemented_bies_on_implementing_offices_id` (`implementing_offices_id`),
+  CONSTRAINT `fk_rails_6a1e247367` FOREIGN KEY (`implementing_offices_id`) REFERENCES `implementing_offices` (`id`),
+  CONSTRAINT `fk_rails_822270eb12` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `implementing_offices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -140,6 +229,22 @@ CREATE TABLE `implementing_offices` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `located_ins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `located_ins` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `airports_id` bigint(20) DEFAULT NULL,
+  `locations_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_located_ins_on_airports_id` (`airports_id`),
+  KEY `index_located_ins_on_locations_id` (`locations_id`),
+  CONSTRAINT `fk_rails_028b790eb6` FOREIGN KEY (`locations_id`) REFERENCES `locations` (`id`),
+  CONSTRAINT `fk_rails_a0b52abc2d` FOREIGN KEY (`airports_id`) REFERENCES `airports` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `locations`;
@@ -153,7 +258,39 @@ CREATE TABLE `locations` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `operates_ins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `operates_ins` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `airline_operators_id` bigint(20) DEFAULT NULL,
+  `locations_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_operates_ins_on_airline_operators_id` (`airline_operators_id`),
+  KEY `index_operates_ins_on_locations_id` (`locations_id`),
+  CONSTRAINT `fk_rails_4a167d66bb` FOREIGN KEY (`locations_id`) REFERENCES `locations` (`id`),
+  CONSTRAINT `fk_rails_87e179f309` FOREIGN KEY (`airline_operators_id`) REFERENCES `airline_operators` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `progress_reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `progress_reports` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `report_date` date DEFAULT NULL,
+  `report_type` varchar(255) DEFAULT NULL,
+  `report_count` int(11) DEFAULT NULL,
+  `airline_operators_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_progress_reports_on_airline_operators_id` (`airline_operators_id`),
+  CONSTRAINT `fk_rails_3bd320a954` FOREIGN KEY (`airline_operators_id`) REFERENCES `airline_operators` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `projects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -192,6 +329,20 @@ CREATE TABLE `situations` (
   CONSTRAINT `fk_rails_ab6c06ef73` FOREIGN KEY (`airport_id`) REFERENCES `airports` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `started_ons`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `started_ons` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_start_date` date DEFAULT NULL,
+  `projects_id` bigint(20) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_started_ons_on_projects_id` (`projects_id`),
+  CONSTRAINT `fk_rails_8b0dad00b0` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -214,6 +365,16 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171112154155'),
 ('20171112154223'),
 ('20171112154236'),
-('20171112154247');
+('20171112154247'),
+('20171113081817'),
+('20171113081841'),
+('20171113081905'),
+('20171113082054'),
+('20171113082249'),
+('20171113082455'),
+('20171113082735'),
+('20171113082819'),
+('20171113083030'),
+('20171113083148');
 
 
