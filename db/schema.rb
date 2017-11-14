@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113083148) do
+ActiveRecord::Schema.define(version: 20171114123334) do
 
   create_table "aircrafts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "aircraft_registration"
@@ -141,11 +141,9 @@ ActiveRecord::Schema.define(version: 20171113083148) do
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "region"
-    t.string "province"
-    t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
   end
 
   create_table "operates_ins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -179,10 +177,8 @@ ActiveRecord::Schema.define(version: 20171113083148) do
     t.string "accident_type"
     t.string "report_type"
     t.string "status"
-    t.bigint "airport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["airport_id"], name: "index_situations_on_airport_id"
   end
 
   create_table "started_ons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -215,6 +211,5 @@ ActiveRecord::Schema.define(version: 20171113083148) do
   add_foreign_key "operates_ins", "airline_operators", column: "airline_operators_id"
   add_foreign_key "operates_ins", "locations", column: "locations_id"
   add_foreign_key "progress_reports", "airline_operators", column: "airline_operators_id"
-  add_foreign_key "situations", "airports"
   add_foreign_key "started_ons", "projects", column: "projects_id"
 end
