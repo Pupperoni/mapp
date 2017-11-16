@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114123334) do
+ActiveRecord::Schema.define(version: 20171116085954) do
 
   create_table "aircrafts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "aircraft_registration"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20171114123334) do
     t.bigint "locations_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount"
     t.index ["locations_id"], name: "index_atms_on_locations_id"
   end
 

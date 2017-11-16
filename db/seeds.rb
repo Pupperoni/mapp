@@ -218,7 +218,7 @@ Dir.foreach('./lib/seeds/atms') do |item|
   #    t = Atm.new
   #    t.locations_id = loc
   #    t.atm_type = row['Type']
-  #    t.atm_amount = row['Amount']   # none of this attribute yet
+  #    t.amount = row['Amount']
   #    t.save
     end
 
