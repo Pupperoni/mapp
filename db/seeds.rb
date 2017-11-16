@@ -203,7 +203,23 @@ end
 Dir.foreach('./lib/seeds/atms') do |item|
   next if item == '.' or item == '..'
 
-  # csv_text = File.read(Rails.root.join('lib', 'seeds', 'atms', item))
-  # csv = CSV.parse(csv_text.scrub, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'atms', item))
+  csv = CSV.parse(csv_text.scrub, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+  # locations may repeat in the dataset; not formatted properly
+  csv.each do |row|
+  #  if Location.exists?(location: row['Location'])
+  #    loc = Location.where(location: row['Location']).first.id
+  #  else
+  #    t = Location.new
+  #    t.location = row['Location']
+  #    t.save
+  #    loc = t.id
+  #    t = Atm.new
+  #    t.locations_id = loc
+  #    t.atm_type = row['Type']
+  #    t.atm_amount = row['Amount']   # none of this attribute yet
+  #    t.save
+    end
 
 end
