@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Implementing Offices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @implementing_offices.each do |implementing_office| %>
+      <tr>
+        <td><%= link_to 'Show', implementing_office %></td>
+        <td><%= link_to 'Edit', edit_implementing_office_path(implementing_office) %></td>
+        <td><%= link_to 'Destroy', implementing_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Implementing Office', new_implementing_office_path %>

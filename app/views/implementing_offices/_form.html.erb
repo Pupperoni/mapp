@@ -1,0 +1,17 @@
+<%= form_with(model: implementing_office, local: true) do |form| %>
+  <% if implementing_office.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(implementing_office.errors.count, "error") %> prohibited this implementing_office from being saved:</h2>
+
+      <ul>
+      <% implementing_office.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
