@@ -1,0 +1,78 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Site Properties -->
+  <title>Mapp</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+
+<style>
+  body {
+    background-color: #ededed;
+  }
+</style>
+</head>
+<body>
+  <div class="ui left demo vertical inverted sidebar labeled icon menu">
+    <div class="item">
+      <br>
+      <div class="header">Filter</div>
+      <br>
+    </div>
+    <a class="item">
+      <i class="plane icon"></i>
+      Airports
+    </a>
+    <a class="item">
+      <i class="money icon"></i>
+      ATMs
+    </a>
+    <a class="item">
+      <i class="emergency icon"></i>
+      Accidents
+    </a>
+    <a class="item">
+      <i class="file text outline icon"></i>
+      Projects
+    </a>
+    <div class="item">
+      <br>
+      <div class="header">Add</div>
+      <br>
+    </div>
+    <a class="item">
+      <i class="plane icon" id="add-airport"></i>
+      Airports
+    </a>
+    <a class="item" href="/mapp/atms/create">
+      <i class="money icon" id="add-atm"></i>
+      ATMs
+    </a>
+    <a class="item">
+      <i class="emergency icon" id="add-accident"></i>
+      Accidents
+    </a>
+    <a class="item">
+      <i class="file text outline icon" id="add-project"></i>
+      Projects
+    </a>
+  </div>
+
+  <div class="ui blue fixed inverted menu">
+    <div class="ui container">
+      <div class="left menu">
+        <a class="item">
+          <i class="big sidebar icon" id="sidebar"></i>
+        </a>
+        <a class="item" href="/mapp/">
+          <i class="big map signs icon"></i>
+          The Mapp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pusher">
+    <br><br><br>

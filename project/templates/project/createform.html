@@ -1,4 +1,32 @@
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
-</form>
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui blue icon header">
+      <i class="circular money icon"></i>
+      <div class="content">
+        Add an ATM
+        <div class="sub header">Add an Automated Teller Machine to The Mapp!</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+        <div class="field">
+            {{ form.atm_type.errors }}
+            <label for="{{ form.atm_type.id_for_label }}">ATM Type</label>
+            {{ form.atm_type }}
+        </div>
+        <div class="field">
+            {{ form.location.errors }}
+            <label for="{{ form.location.id_for_label }}">Location</label>
+            {{ form.location }}
+        </div>
+        <div class="field">
+            {{ form.amount.errors }}
+            <label for="{{ form.amount.id_for_label }}">Amount</label>
+            {{ form.amount }}
+        </div>
+        <input type="submit" value="Save" class="ui large green button"/>
+    </form>
+  </div>
+</div>
+{% include 'project/footer.html' %}

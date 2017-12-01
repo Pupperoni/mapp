@@ -9,6 +9,12 @@ from .forms import *
 from pygeocoder import Geocoder
 
 '''
+MAIN
+'''
+def main(request):
+    return render(request,'project/main.html')
+
+'''
 CREATE
 '''
 class CreateAtmFormView(View):

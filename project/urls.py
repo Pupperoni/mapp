@@ -44,6 +44,6 @@ urlpatterns = [
     url(r'^projects/delete/(?P<pk>[^/s]+)/$',views.DeleteProject.as_view(),name='projectdelete'),
     url(r'^airports/delete/(?P<pk>[0-9]+)/$',views.DeleteAirport.as_view(),name='airportdelete'),
 
-
+    url(r'^$',views.main,name='main'),
 
 ]
