@@ -1,4 +1,37 @@
+<script>
+function initialize() {
+  var myOptions = {
+        center: new google.maps.LatLng(14.5995124, 120.9842195),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    };
+    var map = new google.maps.Map(document.body, myOptions);
+
+    {% for accident in accidents %}
+      createMarker(map, "{{ accident.registration }}", {{ accident.lon }}, {{ accident.lat }});
+    {% endfor %}
+}
+
+function createMarker(map, title, lon, lat) {
+  var marker = new google.maps.Marker({
+    map: map,
+    title: title,
+    position: new google.maps.LatLng(lat, lon)
+  });
+
+  google.maps.event.addListener(marker, 'click', (function(marker, title) {
+     return function() {
+         console.log(title)
+     }
+   })(marker, title));
+}
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx2FckJewFGIyuxolBZ1X0IqXpuLgYq6k&callback=initialize">
+</script>
+
 <h1>Accidents</h1>
 {% for accident in accidents %}
-  <p>{{ accident.registration }}<br>
+  <p>{{ accident.lat }}<br>
 {% endfor %}
