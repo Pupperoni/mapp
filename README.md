@@ -44,10 +44,6 @@ We'll also need the Geocoder to convert location strings into latitude and longi
 ```
   $ pip3 install pygeocoder
 ```
-For easier styling of forms, we'll need to install django-semanticui-forms
-```
-  $ pip3 install django-semanticui-forms
-```
 Once you are done setting up, go to the main project directory where manage.py is located (make sure your virtual environment is activated):
 ```
   $ cd mapp
