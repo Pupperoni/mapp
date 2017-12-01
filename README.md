@@ -36,6 +36,14 @@ To deactivate, just type
 ```
   $ deactivate
 ```  
+While the virtual environment is active, install Django:
+```
+  $ pip3 install django
+```
+We'll also need the Geocoder to convert location strings into latitude and longitude coordinates
+```
+pip3 install pygeocoder
+```
 Once you are done setting up, go to the main project directory where manage.py is located (make sure your virtual environment is activated):
 ```
   $ cd mapp
