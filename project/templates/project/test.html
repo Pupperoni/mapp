@@ -1,0 +1,19 @@
+<h1>Atms</h1>
+{% for atm in atms %}
+  <p>{{ atm.atm_type }} {{atm.location}}<br>
+{% endfor %}
+
+<h1>Accidents</h1>
+{% for accident in accidents %}
+  <p>{{ accident.registration }}<br>
+{% endfor %}
+
+<h1>Airports</h1>
+{% for airport in airports %}
+  {{ airport.airport_name }} {{airport.location}}<br>
+{% endfor %}
+
+<h1>Projects</h1>
+{% for project in projects %}
+  {{ project.project_id }} {{project.status}}<br>
+{% endfor %}

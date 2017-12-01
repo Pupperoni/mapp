@@ -1,3 +1,0 @@
-class AirlineOperator < ApplicationRecord
-
-end

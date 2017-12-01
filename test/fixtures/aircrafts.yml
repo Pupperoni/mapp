@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  aircradft_registration: MyString
-  craft_type: MyString
-
-two:
-  aircradft_registration: MyString
-  craft_type: MyString

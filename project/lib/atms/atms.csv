@@ -1,0 +1,706 @@
+Location,Amount,Type
+Manila,723,universal
+Manila,114,thrift
+Manila,0,rural
+Mandaluyong,223,universal
+Mandaluyong,32,thrift
+Mandaluyong,1,rural
+Marikina,87,universal
+Marikina,19,thrift
+Marikina,1,rural
+Pasig,258,universal
+Pasig,43,thrift
+Pasig,1,rural
+Quezon City,1036,universal
+Quezon City,144,thrift
+Quezon City,1,rural
+San Juan City,106,universal
+San Juan City,18,thrift
+San Juan City,0,rural
+Caloocan City,109,universal
+Caloocan City,37,thrift
+Caloocan City,0,rural
+Malabon City,44,universal
+Malabon City,8,thrift
+Malabon City,0,rural
+Navotas City,21,universal
+Navotas City,3,thrift
+Navotas City,0,rural
+Valenzuela City,77,universal
+Valenzuela City,17,thrift
+Valenzuela City,0,rural
+Las Pinas City,94,universal
+Las Pinas City,20,thrift
+Las Pinas City,0,rural
+Makati City,653,universal
+Makati City,71,thrift
+Makati City,1,rural
+Muntinlupa City,180,universal
+Muntinlupa City,30,thrift
+Muntinlupa City,0,rural
+Paranaque City,219,universal
+Paranaque City,29,thrift
+Paranaque City,0,rural
+Pasay City,221,universal
+Pasay City,30,thrift
+Pasay City,0,rural
+Pateros,10,universal
+Pateros,2,thrift
+Pateros,0,rural
+Taguig City,157,universal
+Taguig City,21,thrift
+Taguig City,0,rural
+Adams,0,universal
+Adams,0,thrift
+Adams,0,rural
+Baccara,0,universal
+Baccara,0,thrift
+Baccara,0,rural
+Badoc,0,universal
+Badoc,0,thrift
+Badoc,0,rural
+Bangui,0,universal
+Bangui,0,thrift
+Bangui,0,rural
+Batac City,10,universal
+Batac City,0,thrift
+Batac City,0,rural
+Burgos,0,universal
+Burgos,0,thrift
+Burgos,0,rural
+Carasi,0,universal
+Carasi,0,thrift
+Carasi,0,rural
+Currimao,0,universal
+Currimao,0,thrift
+Currimao,0,rural
+Dingras,1,universal
+Dingras,0,thrift
+Dingras,0,rural
+Dumalneg,0,universal
+Dumalneg,0,thrift
+Dumalneg,0,rural
+Espiritu (Banna),0,universal
+Espiritu (Banna),0,thrift
+Espiritu (Banna),0,rural
+Laoag (City/Capital),31,universal
+Laoag (City/Capital),2,thrift
+Laoag (City/Capital),0,rural
+Marcos,0,universal
+Marcos,0,thrift
+Marcos,0,rural
+Nueva Era,0,universal
+Nueva Era,0,thrift
+Nueva Era,0,rural
+Pagudpud,0,universal
+Pagudpud,0,thrift
+Pagudpud,0,rural
+Paoay,0,universal
+Paoay,0,thrift
+Paoay,0,rural
+Pasuquin,1,universal
+Pasuquin,0,thrift
+Pasuquin,0,rural
+Piddig,0,universal
+Piddig,0,thrift
+Piddig,0,rural
+Pinili,0,universal
+Pinili,0,thrift
+Pinili,0,rural
+San Nicolas,6,universal
+San Nicolas,0,thrift
+San Nicolas,0,rural
+Sarrat,0,universal
+Sarrat,0,thrift
+Sarrat,0,rural
+Solsona,0,universal
+Solsona,0,thrift
+Solsona,0,rural
+Vintar,0,universal
+Vintar,0,thrift
+Vintar,0,rural
+Alilem,0,universal
+Alilem,0,thrift
+Alilem,0,rural
+Banayoyo,0,universal
+Banayoyo,0,thrift
+Banayoyo,0,rural
+Bantay,2,universal
+Bantay,0,thrift
+Bantay,0,rural
+Burgos,0,universal
+Burgos,0,thrift
+Burgos,0,rural
+Cabugao,0,universal
+Cabugao,0,thrift
+Cabugao,0,rural
+Candon City,7,universal
+Candon City,1,thrift
+Candon City,0,rural
+Caoayan,0,universal
+Caoayan,0,thrift
+Caoayan,0,rural
+Cervantes,0,universal
+Cervantes,0,thrift
+Cervantes,0,rural
+Galimuyod,0,universal
+Galimuyod,0,thrift
+Galimuyod,0,rural
+Gregorio del Pilar - Concepcion,0,universal
+Gregorio del Pilar - Concepcion,0,thrift
+Gregorio del Pilar - Concepcion,0,rural
+Lidlidda,0,universal
+Lidlidda,0,thrift
+Lidlidda,0,rural
+Laoag (City/Capital),0,universal
+Laoag (City/Capital),0,thrift
+Laoag (City/Capital),0,rural
+Nagbukel,0,universal
+Nagbukel,0,thrift
+Nagbukel,0,rural
+Narvacan,1,universal
+Narvacan,0,thrift
+Narvacan,0,rural
+Quirino (Angaki),0,universal
+Quirino (Angaki),0,thrift
+Quirino (Angaki),0,rural
+Alcedo (Baugen),0,universal
+Alcedo (Baugen),0,thrift
+Alcedo (Baugen),0,rural
+San Emilio,0,universal
+San Emilio,0,thrift
+San Emilio,0,rural
+San Esteban,0,universal
+San Esteban,0,thrift
+San Esteban,0,rural
+San Ildefonso,0,universal
+San Ildefonso,0,thrift
+San Ildefonso,0,rural
+San Juan (Lapog),1,universal
+San Juan (Lapog),0,thrift
+San Juan (Lapog),0,rural
+San Vicente,0,universal
+San Vicente,0,thrift
+San Vicente,0,rural
+Santa,0,universal
+Santa,0,thrift
+Santa,0,rural
+Santa Catalina,0,universal
+Santa Catalina,0,thrift
+Santa Catalina,0,rural
+Santa Cruz,0,universal
+Santa Cruz,0,thrift
+Santa Cruz,0,rural
+Santa Lucia,1,universal
+Santa Lucia,0,thrift
+Santa Lucia,0,rural
+Santa Maria,1,universal
+Santa Maria,0,thrift
+Santa Maria,0,rural
+Santiago,0,universal
+Santiago,0,thrift
+Santiago,0,rural
+Santo Domingo,1,universal
+Santo Domingo,0,thrift
+Santo Domingo,0,rural
+Sigay,0,universal
+Sigay,0,thrift
+Sigay,0,rural
+Sinait,1,universal
+Sinait,0,thrift
+Sinait,0,rural
+Sugpon,0,universal
+Sugpon,0,thrift
+Sugpon,0,rural
+Suyo,0,universal
+Suyo,0,thrift
+Suyo,0,rural
+Tagudin,1,universal
+Tagudin,0,thrift
+Tagudin,0,rural
+Vigan (City/Capital),20,universal
+Vigan (City/Capital),2,thrift
+Vigan (City/Capital),0,rural
+Agoo,8,universal
+Agoo,0,thrift
+Agoo,0,rural
+Aringay,0,universal
+Aringay,0,thrift
+Aringay,0,rural
+Bacnotan,1,universal
+Bacnotan,0,thrift
+Bacnotan,0,rural
+Bagulin,0,universal
+Bagulin,0,thrift
+Bagulin,0,rural
+Balaoan,0,universal
+Balaoan,0,thrift
+Balaoan,0,rural
+Bangar,0,universal
+Bangar,0,thrift
+Bangar,0,rural
+Bauang,2,universal
+Bauang,0,thrift
+Bauang,0,rural
+Burgos,0,universal
+Burgos,0,thrift
+Burgos,0,rural
+Caba,0,universal
+Caba,0,thrift
+Caba,0,rural
+Luna,0,universal
+Luna,0,thrift
+Luna,0,rural
+Naguilian,0,universal
+Naguilian,0,thrift
+Naguilian,0,rural
+Pugo,0,universal
+Pugo,0,thrift
+Pugo,0,rural
+Rosario,2,universal
+Rosario,0,thrift
+Rosario,0,rural
+San Fernando (City/Capital),44,universal
+San Fernando (City/Capital),3,thrift
+San Fernando (City/Capital),1,rural
+San Gabriel,0,universal
+San Gabriel,0,thrift
+San Gabriel,0,rural
+San Juan,1,universal
+San Juan,0,thrift
+San Juan,0,rural
+Santo Tomas,0,universal
+Santo Tomas,0,thrift
+Santo Tomas,0,rural
+Santol,0,universal
+Santol,0,thrift
+Santol,0,rural
+Sudipen,0,universal
+Sudipen,0,thrift
+Sudipen,0,rural
+Tubao,0,universal
+Tubao,0,thrift
+Tubao,0,rural
+Agno,0,universal
+Agno,0,thrift
+Agno,0,rural
+Aguilar,0,universal
+Aguilar,0,thrift
+Aguilar,0,rural
+Alaminos City,9,universal
+Alaminos City,4,thrift
+Alaminos City,0,rural
+Alcala,0,universal
+Alcala,0,thrift
+Alcala,0,rural
+Anda,0,universal
+Anda,0,thrift
+Anda,0,rural
+Asingan,0,universal
+Asingan,1,thrift
+Asingan,0,rural
+Balungao,0,universal
+Balungao,0,thrift
+Balungao,0,rural
+Bani,0,universal
+Bani,0,thrift
+Bani,0,rural
+Basista,0,universal
+Basista,0,thrift
+Basista,0,rural
+Bautista,0,universal
+Bautista,0,thrift
+Bautista,0,rural
+Bayambang,3,universal
+Bayambang,0,thrift
+Bayambang,0,rural
+Binaloan,0,universal
+Binaloan,1,thrift
+Binaloan,0,rural
+Binmaley,1,universal
+Binmaley,0,thrift
+Binmaley,0,rural
+Bolinao,0,universal
+Bolinao,0,thrift
+Bolinao,0,rural
+Bugallon,0,universal
+Bugallon,0,thrift
+Bugallon,0,rural
+Burgos,0,universal
+Burgos,0,thrift
+Burgos,0,rural
+Calasiao,4,universal
+Calasiao,0,thrift
+Calasiao,0,rural
+Dagupan City,49,universal
+Dagupan City,8,thrift
+Dagupan City,0,rural
+Dasol,0,universal
+Dasol,0,thrift
+Dasol,0,rural
+Infanta,0,universal
+Infanta,0,thrift
+Infanta,0,rural
+Labrador,0,universal
+Labrador,0,thrift
+Labrador,0,rural
+Laoac,1,universal
+Laoac,0,thrift
+Laoac,0,rural
+Lingayen (Capital),8,universal
+Lingayen (Capital),1,thrift
+Lingayen (Capital),0,rural
+Mabini,1,universal
+Mabini,0,thrift
+Mabini,0,rural
+Malasique,2,universal
+Malasique,0,thrift
+Malasique,0,rural
+Manaoag,3,universal
+Manaoag,0,thrift
+Manaoag,0,rural
+Mangaldan,9,universal
+Mangaldan,0,thrift
+Mangaldan,0,rural
+Mangatarem,0,universal
+Mangatarem,0,thrift
+Mangatarem,0,rural
+Mapandan,0,universal
+Mapandan,0,thrift
+Mapandan,0,rural
+Natividad,0,universal
+Natividad,0,thrift
+Natividad,0,rural
+Pozorrubio,2,universal
+Pozorrubio,0,thrift
+Pozorrubio,0,rural
+Rosales,14,universal
+Rosales,2,thrift
+Rosales,0,rural
+San Carlos (City),5,universal
+San Carlos (City),0,thrift
+San Carlos (City),0,rural
+San Fabian,0,universal
+San Fabian,0,thrift
+San Fabian,0,rural
+San Jacinto,0,universal
+San Jacinto,0,thrift
+San Jacinto,0,rural
+San Manuel,0,universal
+San Manuel,0,thrift
+San Manuel,0,rural
+San Nicolas,0,universal
+San Nicolas,0,thrift
+San Nicolas,0,rural
+San Quintin,0,universal
+San Quintin,0,thrift
+San Quintin,0,rural
+Santa Barbara,0,universal
+Santa Barbara,0,thrift
+Santa Barbara,0,rural
+Santa Maria,0,universal
+Santa Maria,0,thrift
+Santa Maria,0,rural
+Santo Tomas,0,universal
+Santo Tomas,0,thrift
+Santo Tomas,0,rural
+Sison,0,universal
+Sison,0,thrift
+Sison,0,rural
+Sual,2,universal
+Sual,0,thrift
+Sual,0,rural
+Tayug,7,universal
+Tayug,0,thrift
+Tayug,0,rural
+Umingan,0,universal
+Umingan,0,thrift
+Umingan,0,rural
+Urbiztondo,0,universal
+Urbiztondo,0,thrift
+Urbiztondo,0,rural
+Urdaneta City,28,universal
+Urdaneta City,3,thrift
+Urdaneta City,0,rural
+Villasis,1,universal
+Villasis,0,thrift
+Villasis,0,rural
+Basco (Capital),1,universal
+Basco (Capital),0,thrift
+Basco (Capital),0,rural
+Itbayat,0,universal
+Itbayat,0,thrift
+Itbayat,0,rural
+Ivana,0,universal
+Ivana,0,thrift
+Ivana,0,rural
+Mahatao,0,universal
+Mahatao,0,thrift
+Mahatao,0,rural
+Sabtang,0,universal
+Sabtang,0,thrift
+Sabtang,0,rural
+Uyugan,0,universal
+Uyugan,0,thrift
+Uyugan,0,rural
+Abulog,0,universal
+Abulog,0,thrift
+Abulog,0,rural
+Alcala,0,universal
+Alcala,0,thrift
+Alcala,0,rural
+Allacapan,0,universal
+Allacapan,0,thrift
+Allacapan,1,rural
+Amulung,0,universal
+Amulung,0,thrift
+Amulung,0,rural
+Aparri,7,universal
+Aparri,0,thrift
+Aparri,0,rural
+Baggao,0,universal
+Baggao,0,thrift
+Baggao,0,rural
+Ballesteros,0,universal
+Ballesteros,0,thrift
+Ballesteros,0,rural
+Buguey,0,universal
+Buguey,0,thrift
+Buguey,0,rural
+Calayan,0,universal
+Calayan,0,thrift
+Calayan,0,rural
+Camalaniugan,0,universal
+Camalaniugan,0,thrift
+Camalaniugan,0,rural
+Claveria,0,universal
+Claveria,0,thrift
+Claveria,0,rural
+Enrile,0,universal
+Enrile,0,thrift
+Enrile,0,rural
+Gattaran,0,universal
+Gattaran,0,thrift
+Gattaran,1,rural
+Gonzaga,0,universal
+Gonzaga,0,thrift
+Gonzaga,1,rural
+Iguig,0,universal
+Iguig,0,thrift
+Iguig,0,rural
+Lal-Lo,0,universal
+Lal-Lo,0,thrift
+Lal-Lo,0,rural
+Lasam,0,universal
+Lasam,0,thrift
+Lasam,0,rural
+Pamplona,0,universal
+Pamplona,0,thrift
+Pamplona,0,rural
+Penablanca,0,universal
+Penablanca,0,thrift
+Penablanca,0,rural
+Piat,0,universal
+Piat,0,thrift
+Piat,0,rural
+Rizal,0,universal
+Rizal,0,thrift
+Rizal,0,rural
+Sanchez-Mira,2,universal
+Sanchez-Mira,0,thrift
+Sanchez-Mira,0,rural
+Santa Ana,0,universal
+Santa Ana,0,thrift
+Santa Ana,0,rural
+Santa Praxedes (Langangan),0,universal
+Santa Praxedes (Langangan),0,thrift
+Santa Praxedes (Langangan),0,rural
+Santa Teresita,0,universal
+Santa Teresita,0,thrift
+Santa Teresita,0,rural
+Santo Nino (Faire),0,universal
+Santo Nino (Faire),0,thrift
+Santo Nino (Faire),0,rural
+Solana,0,universal
+Solana,0,thrift
+Solana,0,rural
+Tuao,1,universal
+Tuao,0,thrift
+Tuao,0,rural
+Tuguegarao (City/Capital),38,universal
+Tuguegarao (City/Capital),2,thrift
+Tuguegarao (City/Capital),0,rural
+Alicia,3,universal
+Alicia,0,thrift
+Alicia,0,rural
+Angadanan,0,universal
+Angadanan,0,thrift
+Angadanan,0,rural
+Aurora,0,universal
+Aurora,0,thrift
+Aurora,0,rural
+Benito Soliven,0,universal
+Benito Soliven,0,thrift
+Benito Soliven,0,rural
+Burgos,0,universal
+Burgos,0,thrift
+Burgos,0,rural
+Cabagan,0,universal
+Cabagan,0,thrift
+Cabagan,0,rural
+Cabatuan,0,universal
+Cabatuan,0,thrift
+Cabatuan,0,rural
+Cauayan City,18,universal
+Cauayan City,1,thrift
+Cauayan City,0,rural
+Cordon,0,universal
+Cordon,0,thrift
+Cordon,0,rural
+Dinapigui,0,universal
+Dinapigui,0,thrift
+Dinapigui,0,rural
+Divilican,0,universal
+Divilican,0,thrift
+Divilican,0,rural
+Echague,2,universal
+Echague,0,thrift
+Echague,0,rural
+Gamu,0,universal
+Gamu,0,thrift
+Gamu,0,rural
+Ilagan City (Capital),15,universal
+Ilagan City (Capital),0,thrift
+Ilagan City (Capital),0,rural
+Jones,0,universal
+Jones,0,thrift
+Jones,0,rural
+Luna (Antatet),0,universal
+Luna (Antatet),0,thrift
+Luna (Antatet),0,rural
+Maconanan,0,universal
+Maconanan,0,thrift
+Maconanan,0,rural
+Magsaysay(D Albano),0,universal
+Magsaysay(D Albano),0,thrift
+Magsaysay(D Albano),0,rural
+Mallig,0,universal
+Mallig,0,thrift
+Mallig,0,rural
+Naguilian,0,universal
+Naguilian,0,thrift
+Naguilian,0,rural
+Palanan,0,universal
+Palanan,0,thrift
+Palanan,0,rural
+Quezon,0,universal
+Quezon,0,thrift
+Quezon,0,rural
+Quirino,0,universal
+Quirino,0,thrift
+Quirino,0,rural
+Ramon,0,universal
+Ramon,0,thrift
+Ramon,0,rural
+Reina Mercedes,0,universal
+Reina Mercedes,0,thrift
+Reina Mercedes,0,rural
+Roxas,5,universal
+Roxas,0,thrift
+Roxas,0,rural
+San Agustin,0,universal
+San Agustin,0,thrift
+San Agustin,0,rural
+San Guillermo,0,universal
+San Guillermo,0,thrift
+San Guillermo,0,rural
+San Isidro,1,universal
+San Isidro,0,thrift
+San Isidro,0,rural
+San Manuel (Callang),0,universal
+San Manuel (Callang),0,thrift
+San Manuel (Callang),0,rural
+San Mariano,0,universal
+San Mariano,0,thrift
+San Mariano,0,rural
+San Mateo,1,universal
+San Mateo,1,thrift
+San Mateo,0,rural
+San Pablo,0,universal
+San Pablo,0,thrift
+San Pablo,0,rural
+Santa Maria,0,universal
+Santa Maria,0,thrift
+Santa Maria,0,rural
+Santiago City,21,universal
+Santiago City,4,thrift
+Santiago City,0,rural
+Santo Tomas,0,universal
+Santo Tomas,0,thrift
+Santo Tomas,0,rural
+Tumauini,1,universal
+Tumauini,0,thrift
+Tumauini,0,rural
+Alfonso Castaneda,0,universal
+Alfonso Castaneda,0,thrift
+Alfonso Castaneda,0,rural
+Ambaguio,0,universal
+Ambaguio,0,thrift
+Ambaguio,0,rural
+Aritao,0,universal
+Aritao,0,thrift
+Aritao,0,rural
+Bagabag,0,universal
+Bagabag,0,thrift
+Bagabag,0,rural
+Bambang,3,universal
+Bambang,1,thrift
+Bambang,0,rural
+Bayombong (Capital),3,universal
+Bayombong (Capital),0,thrift
+Bayombong (Capital),0,rural
+Diadi,0,universal
+Diadi,0,thrift
+Diadi,0,rural
+Dupax Del Norte,0,universal
+Dupax Del Norte,0,thrift
+Dupax Del Norte,0,rural
+Dupax Del Sur,0,universal
+Dupax Del Sur,0,thrift
+Dupax Del Sur,0,rural
+Kasibu,0,universal
+Kasibu,0,thrift
+Kasibu,0,rural
+Kayapa,0,universal
+Kayapa,0,thrift
+Kayapa,0,rural
+Quezon,0,universal
+Quezon,0,thrift
+Quezon,0,rural
+Santa Fe,0,universal
+Santa Fe,0,thrift
+Santa Fe,0,rural
+Solano,14,universal
+Solano,0,thrift
+Solano,1,rural
+Villa Verde (Ibung),0,universal
+Villa Verde (Ibung),0,thrift
+Villa Verde (Ibung),0,rural
+Aglipay,0,universal
+Aglipay,0,thrift
+Aglipay,0,rural
+Cabarroquis (Capital),3,universal
+Cabarroquis (Capital),0,thrift
+Cabarroquis (Capital),0,rural
+Diffun,0,universal
+Diffun,0,thrift
+Diffun,0,rural
+Maddela,0,universal
+Maddela,0,thrift
+Maddela,0,rural
+Nagtipunan,0,universal
+Nagtipunan,0,thrift
+Nagtipunan,0,rural
+Saguday,0,universal
+Saguday,0,thrift
+Saguday,0,rural
