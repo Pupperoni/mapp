@@ -23,7 +23,7 @@ function initialize() {
           location: "{{accident.location}}",
           lat: "{{accident.lat}}",
           lon: "{{accident.lon}}"
-        }, {{accident.id}}, 'red');
+        }, {{accident.id}}, 'accidents');
       {% endfor %}
     {% endif %}
 
@@ -35,19 +35,21 @@ function initialize() {
           location: "{{airport.location}}",
           lat: "{{airport.lat}}",
           lon: "{{airport.lon}}"
-        }, {{airport.id}}, 'purple');
+        }, {{airport.id}}, 'airports');
       {% endfor %}
     {% endif %}
 
+    const atm_type = ['univeral', 'thrift', 'rural']
     {% if 'mapp/atms/' in request.get_full_path or 'mapp/' in request.get_full_path %}
       {% for atm in atms %}
+
         createMarker(map, {
-          atm_type: "{{atm.atm_type}}",
+          atm_type: atm_type[{{atm.atm_type}}],
           location: "{{atm.location}}",
           amount: "{{atm.amount}}",
           lat: "{{atm.lat}}",
           lon: "{{atm.lon}}"
-        }, {{atm.id}}, 'green');
+        }, {{atm.id}}, 'atms');
       {% endfor %}
     {% endif %}
 
@@ -63,13 +65,19 @@ function initialize() {
           location: "{{project.location}}",
           lat: "{{project.lat}}",
           lon: "{{project.lon}}"
-        }, "{{project.project_id}}", 'orange');
+        }, "{{project.project_id}}", 'projects');
       {% endfor %}
     {% endif %}
 
 }
 
-function createMarker(map, object, id, icon) {
+function createMarker(map, object, id, type) {
+
+  if (type == 'accidents') var icon = 'red';
+  else if (type == 'airports') var icon = 'purple';
+  else if (type == 'atms') var icon = 'green';
+  else if (type == 'projects') var icon = 'orange';
+
   var marker = new google.maps.Marker({
     map: map,
     title: object.registration,
@@ -89,16 +97,17 @@ function createMarker(map, object, id, icon) {
   }
   content += (`</div>
               <span>
-                <a href="{{request.path}}update/${id}" class="ui mini primary basic button">
+                <a href="/mapp/${type}/update/${id}" class="ui mini primary basic button">
                   Update
                 </a>
-                <a class="ui mini negative basic button">
+                <a href="/mapp/${type}/delete/${id}" class="ui mini negative basic button">
                   Delete
                 </a>
               </span>`);
 
   var infowindow = new google.maps.InfoWindow({
-    content: content
+    content: content,
+    maxWidth: 200
   });
 
   google.maps.event.addListener(marker, 'click', (function(marker, object) {
