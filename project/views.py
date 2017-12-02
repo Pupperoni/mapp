@@ -269,6 +269,13 @@ def updatedb(request):
     projects = Project.objects.all()
     return render(request,'project/test.html',{'atms':atms, 'accidents':accidents, 'airports':airports, 'projects':projects})
 
+def fill(request):
+    projects = Project.objects.filter(contractor="")
+    for project in projects:
+        project.contractor = "Unknown"
+        project.save()
+    return redirect(reverse('projectlist'))
+
 def atm_list(request):
     atms = Atm.objects.all()
     return render(request,'project/atmindex.html',{'atms':atms})

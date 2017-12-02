@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^populate/$',views.updatedb,name='populate'), # dont run this!!
-
+    url(r'^fill/$',views.fill,name='fill'),
     url(r'^atms/$',views.atm_list,name='atmlist'),
     url(r'^accidents/$',views.accident_list,name='accidentlist'),
     url(r'^projects/$',views.project_list,name='projectlist'),
