@@ -4,7 +4,7 @@ Django requires Python, so install python3 if you haven't already.
 ```
   $ sudo apt-get update
 
-  $ sudo apt-get install python3.6
+  $ sudo apt-get install python3
 ```
 Next, install pip. Check if you have pip3 installed:
 ```
