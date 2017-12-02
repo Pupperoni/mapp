@@ -132,12 +132,14 @@ class UpdateAtm(generic.edit.UpdateView):
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
 
-    def put(self, request):
-        form = self.form_class(request.PUT)
+    def post(self, request, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            atm = form.save(commit=False)
+            atm = Atm.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             atm.lat,atm.lon = results.coordinates
+            atm.atm_type = form.cleaned_data['atm_type']
+            atm.amount = form.cleaned_data['amount']
             atm.save()
             return redirect(reverse('atmlist'))
         return render(request,self.template_name,{"form":form})
@@ -158,12 +160,17 @@ class UpdateAccident(generic.edit.UpdateView):
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
 
-    def put(self, request):
+    def post(self, request, **kwargs):
         form = self.form_class(request.PUT)
         if form.is_valid():
-            accident = form.save(commit=False)
+            accident = Accident.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             accident.lat,accident.lon = results.coordinates
+            accident.accident_type = form.cleaned_data['accident_type']
+            accident.report_type = form.cleaned_data['report_type']
+            accident.status = form.cleaned_data['status']
+            accident.craft_type = form.cleaned_data['craft_type']
+            accident.registration = form.cleaned_data['registration']
             accident.save()
             return redirect(reverse('accidentlist'))
         return render(request,self.template_name,{"form":form})
@@ -184,12 +191,17 @@ class UpdateProject(generic.edit.UpdateView):
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
 
-    def put(self, request):
-        form = self.form_class(request.PUT)
+    def post(self, request, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            project = form.save(commit=False)
+            project = Project.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             project.lat,project.lon = results.coordinates
+            project.cost = form.cleaned_data['cost']
+            project.status = form.cleaned_data['status']
+            project.fs_type = form.cleaned_data['fs_type']
+            project.implementing_office = form.cleaned_data['implementing_office']
+            project.contractor = form.cleaned_data['contractor']
             project.save()
             return redirect(reverse('projectlist'))
         return render(request,self.template_name,{"form":form})
@@ -210,12 +222,14 @@ class UpdateAirport(generic.edit.UpdateView):
         context = self.get_context_data(object=self.object, form=form)
         return self.render_to_response(context)
 
-    def put(self, request):
-        form = self.form_class(request.PUT)
+    def post(self, request, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            airport = form.save(commit=False)
+            airport = Airport.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             airport.lat,airport.lon = results.coordinates
+            airport.airport_name = form.cleaned_data['airport_name']
+            airport.operator_name = form.cleaned_data['operator_name']
             airport.save()
             return redirect(reverse('airportlist'))
         return render(request,self.template_name,{"form":form})
