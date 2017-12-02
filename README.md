@@ -4,7 +4,7 @@ Django requires Python, so install python3 if you haven't already.
 ```
   $ sudo apt-get update
 
-  $ sudo apt-get install python3.6
+  $ sudo apt-get install python3
 ```
 Next, install pip. Check if you have pip3 installed:
 ```
@@ -43,6 +43,7 @@ While the virtual environment is active, install Django:
 We'll also need the Geocoder to convert location strings into latitude and longitude coordinates
 ```
   $ pip3 install pygeocoder
+  $ pip3 install django-widget-tweaks
 ```
 Once you are done setting up, go to the main project directory where manage.py is located (make sure your virtual environment is activated):
 ```
