@@ -1,3 +1,69 @@
 {% include 'project/header.html' %}
-map hereeee
+<div id="map" style="height: 100%;"></div>
 {% include 'project/footer.html' %}
+
+<script>
+function initialize() {
+  var myOptions = {
+        center: new google.maps.LatLng(14.5995124, 120.9842195),
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    };
+    var map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+    {% if 'mapp/accidents/' in request.get_full_path %}
+      {% for accident in accidents %}
+        createMarker(map, {
+          accident_type: "{{accident.accident_type}}",
+          report_type: "{{accident.report_type}}",
+          status: "{{accident.status}}",
+          registration: "{{accident.registration}}",
+          craft_type: "{{accident.craft_type}}",
+          location: "{{accident.location}}",
+          lat: "{{accident.lat}}",
+          lon: "{{accident.lon}}"
+        });
+      {% endfor %}
+    {% endif %}
+
+    {% if 'mapp/airports/' in request.get_full_path %}
+      {% for airport in airports %}
+        createMarker(map, {
+          airport_name: "{{airport.airport_name}}",
+          operator_name: "{{airport.operator_name}}",
+          location: "{{airport.location}}",
+          lat: "{{airport.lat}}",
+          lon: "{{airport.lon}}"
+        });
+      {% endfor %}
+    {% endif %}
+
+}
+
+function createMarker(map, object) {
+  var marker = new google.maps.Marker({
+    map: map,
+    title: object.registration,
+    position: new google.maps.LatLng(object.lat, object.lon)
+  });
+
+  content = ""
+  for (var key in object) {
+    content += `<span><h5>${key}:</h5> ${object[key]}</span><br />`
+  }
+
+  var infowindow = new google.maps.InfoWindow({
+    content: content
+  });
+
+  google.maps.event.addListener(marker, 'click', (function(marker, object) {
+     return function() {
+       infowindow.open(map, marker);
+     }
+   })(marker, object));
+}
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx2FckJewFGIyuxolBZ1X0IqXpuLgYq6k&callback=initialize">
+</script>

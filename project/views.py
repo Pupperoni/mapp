@@ -12,7 +12,11 @@ from pygeocoder import Geocoder
 MAIN
 '''
 def main(request):
-    return render(request,'project/main.html')
+    atms = Atm.objects.all()
+    accidents = Accident.objects.all()
+    airports= Airport.objects.all()
+    projects = Project.objects.all()
+    return render(request,'project/main.html', {'atms':atms, 'accidents':accidents, 'airports':airports, 'projects':projects})
 
 '''
 CREATE
