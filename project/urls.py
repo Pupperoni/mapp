@@ -35,9 +35,9 @@ urlpatterns = [
     url(r'^airports/(?P<pk>[0-9]+)/$',views.AirportDetailView.as_view(),name='airportdetail'),
 
     url(r'^atms/update/(?P<pk>[0-9]+)/$',views.UpdateAtm.as_view(),name='atmupdate'),
-    url(r'^accidents/(?P<pk>[0-9]+)/$',views.UpdateAccident.as_view(),name='accidentupdate'),
-    url(r'^projects/(?P<pk>[^/s]+)/$',views.UpdateProject.as_view(),name='projectupdate'),
-    url(r'^airports/(?P<pk>[0-9]+)/$',views.UpdateAirport.as_view(),name='airportupdate'),
+    url(r'^accidents/update/(?P<pk>[0-9]+)/$',views.UpdateAccident.as_view(),name='accidentupdate'),
+    url(r'^projects/update/(?P<pk>[^/s]+)/$',views.UpdateProject.as_view(),name='projectupdate'),
+    url(r'^airports/update/(?P<pk>[0-9]+)/$',views.UpdateAirport.as_view(),name='airportupdate'),
 
     url(r'^atms/delete/(?P<pk>[0-9]+)/$',views.DeleteAtm.as_view(),name='atmdelete'),
     url(r'^accidents/delete/(?P<pk>[0-9]+)/$',views.DeleteAccident.as_view(),name='accidentdelete'),
