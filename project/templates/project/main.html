@@ -23,7 +23,7 @@ function initialize() {
           location: "{{accident.location}}",
           lat: "{{accident.lat}}",
           lon: "{{accident.lon}}"
-        }, 'red');
+        }, {{accident.id}}, 'red');
       {% endfor %}
     {% endif %}
 
@@ -35,7 +35,7 @@ function initialize() {
           location: "{{airport.location}}",
           lat: "{{airport.lat}}",
           lon: "{{airport.lon}}"
-        }, 'purple');
+        }, {{airport.id}}, 'purple');
       {% endfor %}
     {% endif %}
 
@@ -47,7 +47,7 @@ function initialize() {
           amount: "{{atm.amount}}",
           lat: "{{atm.lat}}",
           lon: "{{atm.lon}}"
-        }, 'green');
+        }, {{atm.id}}, 'green');
       {% endfor %}
     {% endif %}
 
@@ -63,13 +63,13 @@ function initialize() {
           location: "{{project.location}}",
           lat: "{{project.lat}}",
           lon: "{{project.lon}}"
-        }, 'orange');
+        }, "{{project.project_id}}", 'orange');
       {% endfor %}
     {% endif %}
 
 }
 
-function createMarker(map, object, icon) {
+function createMarker(map, object, id, icon) {
   var marker = new google.maps.Marker({
     map: map,
     title: object.registration,
@@ -77,10 +77,25 @@ function createMarker(map, object, icon) {
     icon: `http://maps.google.com/intl/en_us/mapfiles/ms/micons/${icon}.png`
   });
 
-  content = ""
+  content = `<div class="ui relaxed list">`
   for (var key in object) {
-    content += `<span><h5>${key}:</h5> ${object[key]}</span><br />`
+    content += (`<div class="item">
+                  <i class="map outline icon"></i>
+                  <div class="content">
+                    <div class="header">${key.replace(/_/g, ' ')}</div>
+                    ${object[key]}
+                  </div>
+                </div>`);
   }
+  content += (`</div>
+              <span>
+                <a href="{{request.path}}update/${id}" class="ui mini primary basic button">
+                  Update
+                </a>
+                <a class="ui mini negative basic button">
+                  Delete
+                </a>
+              </span>`);
 
   var infowindow = new google.maps.InfoWindow({
     content: content
