@@ -1,9 +1,11 @@
 {% load widget_tweaks %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <!-- Site Properties -->
-  <title>Mapp</title>
+  <title>The Mapp</title>
+  <link rel="shortcut icon" href="{% static "favicon.png" %}"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
@@ -15,7 +17,7 @@
 </style>
 </head>
 <body>
-  <div class="ui left demo vertical inverted sidebar labeled icon menu">
+  <div class="ui left demo vertical inverted sidebar labeled icon menu" style="background-color: #29343d">
     <div class="item">
       <br>
       <div class="header">Filter</div>
@@ -60,7 +62,7 @@
     </a>
   </div>
 
-  <div class="ui blue fixed inverted menu">
+  <div class="ui blue fixed inverted menu" style="background-color: #0f3d66">
     <div class="ui container">
       <div class="left menu">
         <a class="item">

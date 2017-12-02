@@ -1,8 +1,8 @@
 {% include 'project/header.html' %}
 <div class="ui middle aligned center aligned grid">
   <div class="five wide column">
-    <br><br><br> <!-- huhu -->
-    <h2 class="ui blue icon header">
+    <br><br><br><br> <!-- huhu -->
+    <h2 class="ui icon header" style="color: #934742;">
       <i class="circular ambulance outline icon"></i>
       <div class="content">
         Add an Accident
@@ -25,23 +25,25 @@
             <label for="{{ form.status.id_for_label }}">Status</label>
             {{ form.status }}
         </div>
-        <div class="field">
-            {{ form.registration.errors }}
-            <label for="{{ form.registration.id_for_label }}">Registration</label>
-            {{ form.registration }}
-        </div>
-        <div class="field">
-            {{ form.craft_type.errors }}
-            <label for="{{ form.craft_type.id_for_label }}">Craft Type</label>
-            {{ form.craft_type }}
+        <div class="two fields">
+          <div class="field">
+              {{ form.registration.errors }}
+              <label for="{{ form.registration.id_for_label }}">Registration</label>
+              {{ form.registration }}
+          </div>
+          <div class="field">
+              {{ form.craft_type.errors }}
+              <label for="{{ form.craft_type.id_for_label }}">Craft Type</label>
+              {{ form.craft_type }}
+          </div>
         </div>
         <div class="field">
             {{ form.location.errors }}
             <label for="{{ form.location.id_for_label }}">Location</label>
             {{ form.location }}
         </div>
-        <input type="submit" value="Save" class="ui large green button"/>
+        <input type="submit" value="Save" class="ui large button" style="background-color: #934742; color: #ffffff;"/>
     </form>
   </div>
-</div>ss
+</div>
 {% include 'project/footer.html' %}

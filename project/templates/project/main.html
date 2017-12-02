@@ -1,4 +1,5 @@
 {% include 'project/header.html' %}
+{% load static %}
 <div id="map" style="height: 100%;"></div>
 {% include 'project/footer.html' %}
 
@@ -6,9 +7,100 @@
 function initialize() {
   var myOptions = {
         center: new google.maps.LatLng(14.5995124, 120.9842195),
-        zoom: 5,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+            {
+                "featureType": "administrative",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 33
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2e5d4"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#c5dac6"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#c5c6c6"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e4d7c6"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#fbfaf7"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#acbcc9"
+                    }
+                ]
+            }
+        ],
     };
     var map = new google.maps.Map(document.getElementById('map'), myOptions);
 
@@ -23,7 +115,7 @@ function initialize() {
           location: "{{accident.location}}",
           lat: "{{accident.lat}}",
           lon: "{{accident.lon}}"
-        }, {{accident.id}}, 'accidents');
+        }, {{accident.id}}, 'accidents', "{% static "ambulance.png" %}");
       {% endfor %}
     {% endif %}
 
@@ -35,7 +127,7 @@ function initialize() {
           location: "{{airport.location}}",
           lat: "{{airport.lat}}",
           lon: "{{airport.lon}}"
-        }, {{airport.id}}, 'airports');
+        }, {{airport.id}}, 'airports', "{% static "airport.png" %}");
       {% endfor %}
     {% endif %}
 
@@ -49,7 +141,7 @@ function initialize() {
           amount: "{{atm.amount}}",
           lat: "{{atm.lat}}",
           lon: "{{atm.lon}}"
-        }, {{atm.id}}, 'atms');
+        }, {{atm.id}}, 'atms', "{% static "atm.png" %}");
       {% endfor %}
     {% endif %}
 
@@ -65,24 +157,19 @@ function initialize() {
           location: "{{project.location}}",
           lat: "{{project.lat}}",
           lon: "{{project.lon}}"
-        }, "{{project.project_id}}", 'projects');
+        }, "{{project.project_id}}", 'projects', "{% static "project.png" %}");
       {% endfor %}
     {% endif %}
 
 }
 
-function createMarker(map, object, id, type) {
-
-  if (type == 'accidents') var icon = 'red';
-  else if (type == 'airports') var icon = 'purple';
-  else if (type == 'atms') var icon = 'green';
-  else if (type == 'projects') var icon = 'orange';
+function createMarker(map, object, id, type, icon) {
 
   var marker = new google.maps.Marker({
     map: map,
     title: object.registration,
     position: new google.maps.LatLng(object.lat, object.lon),
-    icon: `http://maps.google.com/intl/en_us/mapfiles/ms/micons/${icon}.png`
+    icon: icon
   });
 
   content = `<div class="ui relaxed list">`
