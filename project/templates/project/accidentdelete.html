@@ -1,4 +1,18 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ accident }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br><br><br><br><br> <!-- huhu -->
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui icon header" style="color: #934742;">
+      <i class="circular ambulance icon"></i>
+      <div class="content">
+        Delete an Accident
+        <div class="sub header">Are you sure you want to delete Accident {{ accident.accident_type }}?</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+    <input type="submit" value="Confirm" class="ui large button" style="background-color: #934742; color: #ffffff;"/>
+  </form>
+  </div>
+</div>
+{% include 'project/footer.html' %}

@@ -1,4 +1,18 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ airport }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br><br><br><br><br> <!-- huhu -->
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui icon header" style="color: #29343d;">
+      <i class="circular plane icon"></i>
+      <div class="content">
+        Delete an Airport
+        <div class="sub header">Are you sure you want to delete {{ airport.airport_name }} Airport?</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+    <input type="submit" value="Confirm" class="ui large button" style="background-color: #29343d; color: #ffffff;"/>
+  </form>
+  </div>
+</div>
+{% include 'project/footer.html' %}
