@@ -1,0 +1,32 @@
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui blue icon header">
+      <i class="circular plane icon"></i>
+      <div class="content">
+        Add an Airport
+        <div class="sub header">Add an Airport to The Mapp!</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+        <div class="field">
+            {{ form.airport_name.errors }}
+            <label for="{{ form.airport_name.id_for_label }}">Airport Name</label>
+            {{ form.airport_name }}
+        </div>
+        <div class="field">
+            {{ form.operator_name.errors }}
+            <label for="{{ form.operator_name.id_for_label }}">Operator Name</label>
+            {{ form.operator_name }}
+        </div>
+        <div class="field">
+            {{ form.location.errors }}
+            <label for="{{ form.location.id_for_label }}">Location</label>
+            {{ form.location }}
+        </div>
+        <input type="submit" value="Save" class="ui large green button"/>
+    </form>
+  </div>
+</div>
+{% include 'project/footer.html' %}

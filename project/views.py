@@ -23,7 +23,7 @@ CREATE
 '''
 class CreateAtmFormView(View):
     form_class = CreateAtmForm
-    template_name = 'project/createform.html'
+    template_name = 'project/atmcreate.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -42,7 +42,7 @@ class CreateAtmFormView(View):
 
 class CreateAccidentFormView(View):
     form_class = CreateAccidentForm
-    template_name = 'project/createform.html'
+    template_name = 'project/accidentcreate.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -60,7 +60,7 @@ class CreateAccidentFormView(View):
 
 class CreateProjectFormView(View):
     form_class = CreateProjectForm
-    template_name = 'project/createform.html'
+    template_name = 'project/projectcreate.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -78,7 +78,7 @@ class CreateProjectFormView(View):
 
 class CreateAirportFormView(generic.edit.CreateView):
     form_class = CreateAirportForm
-    template_name = 'project/createform.html'
+    template_name = 'project/airportcreate.html'
 
     def get(self, request):
         form = self.form_class(None)

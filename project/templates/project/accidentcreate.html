@@ -1,0 +1,47 @@
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui blue icon header">
+      <i class="circular ambulance outline icon"></i>
+      <div class="content">
+        Add an Accident
+        <div class="sub header">Add an Accident Aircraft Report to The Mapp!</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+        <div class="field">
+            {{ form.accident_type.errors }}
+            <label for="{{ form.accident.id_for_label }}">Accident Type</label>
+            {{ form.accident_type }}
+        </div>
+        <div class="field">
+            {{ form.report_type.errors }}
+            <label for="{{ form.report_type.id_for_label }}">Report Type</label>
+            {{ form.report_type }}
+        </div>
+        <div class="field">
+            {{ form.status.errors }}
+            <label for="{{ form.status.id_for_label }}">Status</label>
+            {{ form.status }}
+        </div>
+        <div class="field">
+            {{ form.registration.errors }}
+            <label for="{{ form.registration.id_for_label }}">Registration</label>
+            {{ form.registration }}
+        </div>
+        <div class="field">
+            {{ form.craft_type.errors }}
+            <label for="{{ form.craft_type.id_for_label }}">Craft Type</label>
+            {{ form.craft_type }}
+        </div>
+        <div class="field">
+            {{ form.location.errors }}
+            <label for="{{ form.location.id_for_label }}">Location</label>
+            {{ form.location }}
+        </div>
+        <input type="submit" value="Save" class="ui large green button"/>
+    </form>
+  </div>
+</div>ss
+{% include 'project/footer.html' %}

@@ -1,0 +1,52 @@
+{% include 'project/header.html' %}
+<div class="ui middle aligned center aligned grid">
+  <div class="five wide column">
+    <br><br><br> <!-- huhu -->
+    <h2 class="ui blue icon header">
+      <i class="circular file text outline icon"></i>
+      <div class="content">
+        Add a Project
+        <div class="sub header">Add an Engineering Project to The Mapp!</div>
+      </div>
+    </h2>
+    <form action="" method="post" class="ui form">{% csrf_token %}
+        <div class="field">
+            {{ form.project_id.errors }}
+            <label for="{{ form.project_id.id_for_label }}">Project ID</label>
+            {{ form.project_id }}
+        </div>
+        <div class="field">
+            {{ form.cost.errors }}
+            <label for="{{ form.cost.id_for_label }}">Cost</label>
+            {{ form.cost }}
+        </div>
+        <div class="field">
+            {{ form.status.errors }}
+            <label for="{{ form.status.id_for_label }}">Status</label>
+            {{ form.status }}
+        </div>
+        <div class="field">
+            {{ form.fs_type.errors }}
+            <label for="{{ form.fs_type.id_for_label }}">FS Type</label>
+            {{ form.fs_type }}
+        </div>
+        <div class="field">
+            {{ form.implementing_office.errors }}
+            <label for="{{ form.implementing_office.id_for_label }}">Implementing Office</label>
+            {{ form.implementing_office }}
+        </div>
+        <div class="field">
+            {{ form.contractor.errors }}
+            <label for="{{ form.contractor.id_for_label }}">Contractor</label>
+            {{ form.contractor }}
+        </div>
+        <div class="field">
+            {{ form.location.errors }}
+            <label for="{{ form.location.id_for_label }}">Location</label>
+            {{ form.location }}
+        </div>
+        <input type="submit" value="Save" class="ui large green button"/>
+    </form>
+  </div>
+</div>ss
+{% include 'project/footer.html' %}
