@@ -43,6 +43,7 @@ While the virtual environment is active, install Django:
 We'll also need the Geocoder to convert location strings into latitude and longitude coordinates
 ```
   $ pip3 install pygeocoder
+  $ pip3 install django-widget-tweaks
 ```
 Once you are done setting up, go to the main project directory where manage.py is located (make sure your virtual environment is activated):
 ```
