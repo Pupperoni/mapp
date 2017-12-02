@@ -1,4 +1,18 @@
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" />
+<form action="" method="put">{% csrf_token %}
+    <div class="field">
+        {{ form.atm_type.errors }}
+        <label for="{{ form.atm_type.id_for_label }}">ATM Type</label>
+        {{ form.atm_type }}
+    </div>
+    <div class="field">
+        {{ form.location.errors }}
+        <label for="{{ form.location.id_for_label }}">Location</label>
+        {{ form.location }}
+    </div>
+    <div class="field">
+        {{ form.amount.errors }}
+        <label for="{{ form.amount.id_for_label }}">Amount</label>
+        {{ form.amount }}
+    </div>
+    <input type="submit" value="Save"/>
 </form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.views.generic import View
@@ -33,14 +33,15 @@ class CreateAtmFormView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             atm = form.save(commit=False)
-            result = Geocoder.geocode(form.cleaned_data['location'])
-            lat,lon = results.coordinates
+            atm.amount = form.cleaned_data['amount']
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            atm.lat,atm.lon = results.coordinates
             atm.save()
-            return reverse('atmdetail', kwargs={'pk': self.pk})
+            return redirect(reverse('atmlist'))
         return render(request,self.template_name,{"form":form})
 
 class CreateAccidentFormView(View):
-    model = Accident
+    form_class = CreateAccidentForm
     template_name = 'project/createform.html'
 
     def get(self, request):
@@ -50,15 +51,15 @@ class CreateAccidentFormView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            atm = form.save(commit=False)
-            result = Geocoder.geocode("4207 N Washington Ave, Douglas, AZ 85607")
-            lat,lon = results.coordinates
-            atm.save()
-            return reverse('atmdetail', kwargs={'pk': self.pk})
+            accident = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            accident.lat,accident.lon = results.coordinates
+            accident.save()
+            return redirect(reverse('accidentlist'))
         return render(request,self.template_name,{"form":form})
 
 class CreateProjectFormView(View):
-    model = Project
+    form_class = CreateProjectForm
     template_name = 'project/createform.html'
 
     def get(self, request):
@@ -68,15 +69,15 @@ class CreateProjectFormView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            atm = form.save(commit=False)
-            result = Geocoder.geocode("4207 N Washington Ave, Douglas, AZ 85607")
-            lat,lon = results.coordinates
-            atm.save()
-            return reverse('atmdetail', kwargs={'pk': self.pk})
+            project = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            project.lat,project.lon = results.coordinates
+            project.save()
+            return redirect(reverse('projectlist'))
         return render(request,self.template_name,{"form":form})
 
 class CreateAirportFormView(generic.edit.CreateView):
-    model = Airport
+    form_class = CreateAirportForm
     template_name = 'project/createform.html'
 
     def get(self, request):
@@ -86,11 +87,11 @@ class CreateAirportFormView(generic.edit.CreateView):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            atm = form.save(commit=False)
-            result = Geocoder.geocode("4207 N Washington Ave, Douglas, AZ 85607")
-            lat,lon = results.coordinates
-            atm.save()
-            return reverse('atmdetail', kwargs={'pk': self.pk})
+            airport= form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            airport.lat,airport.lon = results.coordinates
+            airport.save()
+            return redirect(reverse('airportlist'))
         return render(request,self.template_name,{"form":form})
 
 '''
@@ -121,30 +122,107 @@ EDIT
 '''
 class UpdateAtm(generic.edit.UpdateView):
     model = Atm
+    form_class = CreateAtmForm
     template_name = 'project/updateform.html'
-    fields = [
-    'atm_type', 'location', 'amount'
-    ]
+
+    def get(self, request, **kwargs):
+        self.object = Atm.objects.get(pk=self.kwargs['pk'])
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
+
+    def put(self, request):
+        form = self.form_class(request.PUT)
+        if form.is_valid():
+            atm = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            atm.lat,atm.lon = results.coordinates
+            atm.save()
+            return redirect(reverse('atmlist'))
+        return render(request,self.template_name,{"form":form})
+
+    def get_object(self, queryset=None):
+        obj = Atm.objects.get(pk=self.kwargs['pk'])
+        return obj
+
 class UpdateAccident(generic.edit.UpdateView):
     model = Accident
     template_name = 'project/updateform.html'
-    fields = [
-    'accident_type', 'report_type', 'status', 'registration', 'craft_type', 'location'
-    ]
+    form_class = CreateAccidentForm
+
+    def get(self, request, **kwargs):
+        self.object = Accident.objects.get(pk=self.kwargs['pk'])
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
+
+    def put(self, request):
+        form = self.form_class(request.PUT)
+        if form.is_valid():
+            accident = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            accident.lat,accident.lon = results.coordinates
+            accident.save()
+            return redirect(reverse('accidentlist'))
+        return render(request,self.template_name,{"form":form})
+
+    def get_object(self, queryset=None):
+        obj = Accident.objects.get(pk=self.kwargs['pk'])
+        return obj
 
 class UpdateProject(generic.edit.UpdateView):
     model = Project
     template_name = 'project/updateform.html'
-    fields = [
-    'project_id', 'cost', 'status', 'fs_type', 'implementing_office', 'contractor', 'location'
-    ]
+    form_class = CreateProjectForm
+
+    def get(self, request, **kwargs):
+        self.object = Project.objects.get(pk=self.kwargs['pk'])
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
+
+    def put(self, request):
+        form = self.form_class(request.PUT)
+        if form.is_valid():
+            project = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            project.lat,project.lon = results.coordinates
+            project.save()
+            return redirect(reverse('projectlist'))
+        return render(request,self.template_name,{"form":form})
+
+    def get_object(self, queryset=None):
+        obj = Project.objects.get(pk=self.kwargs['pk'])
+        return obj
 
 class UpdateAirport(generic.edit.UpdateView):
     model = Airport
     template_name = 'project/updateform.html'
-    fields = [
-    'location', 'airport_name', 'operator_name'
-    ]
+    form_class = CreateAirportForm
+
+    def get(self, request, **kwargs):
+        self.object = Airport.objects.get(pk=self.kwargs['pk'])
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form)
+        return self.render_to_response(context)
+
+    def put(self, request):
+        form = self.form_class(request.PUT)
+        if form.is_valid():
+            airport = form.save(commit=False)
+            results = Geocoder.geocode(form.cleaned_data['location'])
+            airport.lat,airport.lon = results.coordinates
+            airport.save()
+            return redirect(reverse('airportlist'))
+        return render(request,self.template_name,{"form":form})
+
+    def get_object(self, queryset=None):
+        obj = Airport.objects.get(pk=self.kwargs['pk'])
+        return obj
 
 '''
 DESTROY
