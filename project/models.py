@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+import datetime
+
 
 class Atm(models.Model):
     ATM_TYPE_CHOICES = (
@@ -25,7 +27,7 @@ class Accident(models.Model):
     location = models.CharField(max_length=200)
     lat = models.DecimalField(max_digits=8,decimal_places=4)
     lon = models.DecimalField(max_digits=8,decimal_places=4)
-    #date = models.DateField()
+    date = models.DateField(default=datetime.date.today())
 
     def get_absolute_url(self):
         return reverse('accidentdetail', kwargs={'pk': self.pk})
@@ -40,8 +42,8 @@ class Project(models.Model):
     location = models.CharField(max_length=200)
     lat = models.DecimalField(max_digits=8,decimal_places=4)
     lon = models.DecimalField(max_digits=8,decimal_places=4)
-    #start_date = models.DateField()
-    #end_date = models.DateField()
+    start_date = models.DateField(default=datetime.date.today())
+    end_date = models.DateField(default=datetime.date.today())
     def get_absolute_url(self):
         return reverse('projectdetail', kwargs={'pk': self.pk})
 
