@@ -113,6 +113,7 @@ function initialize() {
           registration: "{{accident.registration}}",
           craft_type: "{{accident.craft_type}}",
           location: "{{accident.location}}",
+          date_of_accident: "{{accident.date}}",
           lat: "{{accident.lat}}",
           lon: "{{accident.lon}}"
         }, {{accident.id}}, 'accidents', "{% static "ambulance.png" %}");
@@ -155,6 +156,8 @@ function initialize() {
           implementing_office: "{{project.implementing_office}}",
           contractor: "{{project.contractor}}",
           location: "{{project.location}}",
+          start_date: "{{project.start_date}}",
+          end_date: "{{project.end_date}}",
           lat: "{{project.lat}}",
           lon: "{{project.lon}}"
         }, "{{project.project_id}}", 'projects', "{% static "project.png" %}");
