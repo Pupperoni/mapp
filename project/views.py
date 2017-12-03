@@ -34,7 +34,7 @@ class CreateAtmFormView(View):
         if form.is_valid():
             atm = form.save(commit=False)
             if form.cleaned_data['amount'] < 0:
-                return render(request,self.template_name,{"form":form})
+                return render(request,'project/invalidinput.html',{"form":form})
             atm.amount = form.cleaned_data['amount']
             results = Geocoder.geocode(form.cleaned_data['location'])
             atm.lat,atm.lon = results.coordinates
@@ -72,6 +72,8 @@ class CreateProjectFormView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             project = form.save(commit=False)
+            if form.cleaned_data['cost'] < 0:
+                return render(request,'project/invalidinput.html',{"form":form})
             results = Geocoder.geocode(form.cleaned_data['location'])
             project.lat,project.lon = results.coordinates
             project.save()
