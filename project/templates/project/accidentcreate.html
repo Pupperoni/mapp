@@ -20,10 +20,17 @@
             <label for="{{ form.report_type.id_for_label }}">Report Type</label>
             {{ form.report_type }}
         </div>
-        <div class="field">
-            {{ form.status.errors }}
-            <label for="{{ form.status.id_for_label }}">Status</label>
-            {{ form.status }}
+        <div class="two fields">
+          <div class="field">
+              {{ form.date.errors }}
+              <label for="{{ form.date.id_for_label }}">Date of Accident</label>
+              {{ form.date }}
+          </div>
+          <div class="field">
+              {{ form.status.errors }}
+              <label for="{{ form.status.id_for_label }}">Status</label>
+              {{ form.status }}
+          </div>
         </div>
         <div class="two fields">
           <div class="field">
