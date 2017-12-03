@@ -33,6 +33,8 @@ class CreateAtmFormView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             atm = form.save(commit=False)
+            if form.cleaned_data['amount'] < 0:
+                return render(request,self.template_name,{"form":form})
             atm.amount = form.cleaned_data['amount']
             results = Geocoder.geocode(form.cleaned_data['location'])
             atm.lat,atm.lon = results.coordinates
@@ -87,7 +89,7 @@ class CreateAirportFormView(generic.edit.CreateView):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            airport= form.save(commit=False)
+            airport = form.save(commit=False)
             results = Geocoder.geocode(form.cleaned_data['location'])
             airport.lat,airport.lon = results.coordinates
             airport.save()
@@ -139,6 +141,8 @@ class UpdateAtm(generic.edit.UpdateView):
             results = Geocoder.geocode(form.cleaned_data['location'])
             atm.lat,atm.lon = results.coordinates
             atm.atm_type = form.cleaned_data['atm_type']
+            if form.cleaned_data['amount'] < 0:
+                return render(request,self.template_name,{"form":form})
             atm.amount = form.cleaned_data['amount']
             atm.save()
             return redirect(reverse('atmlist'))
@@ -161,16 +165,26 @@ class UpdateAccident(generic.edit.UpdateView):
         return self.render_to_response(context)
 
     def post(self, request, **kwargs):
-        form = self.form_class(request.PUT)
+        form = self.form_class(request.POST)
         if form.is_valid():
             accident = Accident.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             accident.lat,accident.lon = results.coordinates
             accident.accident_type = form.cleaned_data['accident_type']
+            if accident.accident_type == "":
+                accident.accident_type = "Unknown"
             accident.report_type = form.cleaned_data['report_type']
+            if accident.report_type == "":
+                accident.report_type = "Unknown"
             accident.status = form.cleaned_data['status']
+            if accident.status == "":
+                accident.status = "Unknown"
             accident.craft_type = form.cleaned_data['craft_type']
+            if accident.craft_type == "":
+                accident.craft_type = "Unknown"
             accident.registration = form.cleaned_data['registration']
+            if accident.registration == "":
+                accident.registration = "Unknown"
             accident.save()
             return redirect(reverse('accidentlist'))
         return render(request,self.template_name,{"form":form})
@@ -197,11 +211,21 @@ class UpdateProject(generic.edit.UpdateView):
             project = Project.objects.get(pk=self.kwargs['pk'])
             results = Geocoder.geocode(form.cleaned_data['location'])
             project.lat,project.lon = results.coordinates
+            if form.cleaned_data['cost'] < 0:
+                return render(request,self.template_name,{"form":form})
             project.cost = form.cleaned_data['cost']
             project.status = form.cleaned_data['status']
+            if project.status == "":
+                project.status = "Unknown"
             project.fs_type = form.cleaned_data['fs_type']
+            if project.fs_type == "":
+                project.fs_type = "Unknown"
             project.implementing_office = form.cleaned_data['implementing_office']
+            if project.implementing_office == "":
+                project.implementing_office = "Unknown"
             project.contractor = form.cleaned_data['contractor']
+            if project.contractor == "":
+                project.contractor = "Unknown"
             project.save()
             return redirect(reverse('projectlist'))
         return render(request,self.template_name,{"form":form})
@@ -229,7 +253,11 @@ class UpdateAirport(generic.edit.UpdateView):
             results = Geocoder.geocode(form.cleaned_data['location'])
             airport.lat,airport.lon = results.coordinates
             airport.airport_name = form.cleaned_data['airport_name']
+            if airport.airport_name == "":
+                airport.airport_name = "Unknown"
             airport.operator_name = form.cleaned_data['operator_name']
+            if airport.operator_name == "":
+                airport.operator_name = "Unknown"
             airport.save()
             return redirect(reverse('airportlist'))
         return render(request,self.template_name,{"form":form})

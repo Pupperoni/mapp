@@ -38,7 +38,7 @@ def populatedb():
     '''
     '''
     Reading csv files for accidents
-    '''
+
     files = glob.glob('project/lib/accidents/*.csv')
     for x in files:
         csvfile = open(x,'r')
@@ -61,10 +61,9 @@ def populatedb():
             accident = Accident(accident_type=accident_type, report_type=report_type, status=status, registration=registration, craft_type=craft_type, location=location, lat=lat, lon=lon)
             accident.save()
         csvfile.close()
-
+    '''
     '''
     Reading csv files for atms
-    '''
     files = glob.glob('project/lib/atms/*.csv')
     for x in files:
         csvfile = open(x,'r')
@@ -89,6 +88,7 @@ def populatedb():
             atm.save()
         csvfile.close()
     '''
+    '''
     Reading csv files for airports
     '''
     files = glob.glob('project/lib/cargo-freight/*.csv')
@@ -99,7 +99,7 @@ def populatedb():
         for row in read:
             location = row[0]
             try:
-                results = Geocoder.geocode(location)
+                results = Geocoder.geocode(row[1])
                 lat,lon = results.coordinates
             except:
                 lat = 0
